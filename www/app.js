@@ -89,6 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
       punjabi: 'ਹਰ 15 ਮਿੰਟਾਂ ਵਿੱਚ ਅਪਡੇਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ'
     };
     tickerStatusText.textContent = strings[lang] || strings.english;
+    
+    // Update language scroll pills
+    document.querySelectorAll('.lang-pill').forEach(pill => {
+      if (pill.dataset.lang === lang) {
+        pill.classList.add('active');
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } else {
+        pill.classList.remove('active');
+      }
+    });
   }
 
   // --- EVENT LISTENERS ---
@@ -109,6 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
       applyLanguage(e.target.value);
       switchView('feed');
       fetchNews();
+    });
+
+    // Language pills below header
+    const langPills = document.querySelectorAll('.lang-pill');
+    langPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        applyLanguage(pill.dataset.lang);
+        switchView('feed');
+        fetchNews();
+      });
     });
 
     // FAB Manual Refresh
