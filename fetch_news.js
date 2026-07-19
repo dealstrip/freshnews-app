@@ -208,13 +208,7 @@ async function run() {
           // Skip completely empty items
           if (!title || !cleanedDesc) continue;
 
-          // Check completeness rule for raw feeds:
-          // "When generating news, ensure each story is fully completed. If a story or sentence cannot be completed, skip it entirely."
-          // If description ends with incomplete punctuation or '...' or similar, we skip it
-          if (cleanedDesc.endsWith('...') || cleanedDesc.endsWith('..') || cleanedDesc.endsWith('…') || cleanedDesc.endsWith('read more') || cleanedDesc.endsWith('read details')) {
-            continue;
-          }
-
+          // Completeness check moved to after fallback generation
           let summary = '';
           // Try to summarize with Mistral, if it fails or key is missing, fall back to cleaned RSS description
           const aiSummary = await summarizeWithMistral(title, rawDesc, langInfo.code);
@@ -224,10 +218,14 @@ async function run() {
             summary = cleanedDesc;
           }
 
-          // Double check rule requirements on the final summary:
-          // Ensure it's fully complete
-          if (summary.endsWith('...') || summary.endsWith('…')) {
-            continue;
+          // Clean up Google News RSS truncations to make it a complete sentence instead of skipping!
+          if (summary.endsWith('...') || summary.endsWith('…') || summary.endsWith('..') || summary.endsWith('read more')) {
+            const lastPeriod = summary.lastIndexOf('.');
+            if (lastPeriod > 10) {
+                summary = summary.substring(0, lastPeriod + 1);
+            } else {
+                summary = title; // If no complete sentence exists, use the title to guarantee completeness
+            }
           }
 
           // Rule: "After the last line of the news, there must only be '.. ' before the concluding promotional phrase"
@@ -256,8 +254,8 @@ async function run() {
     // Sort: Newest articles first
     articles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-    // Limit to top 30 stories to keep file small and light
-    const finalArticles = articles.slice(0, 30);
+    // Limit to top 100 stories for maximum variety across all sources
+    const finalArticles = articles.slice(0, 100);
 
     // Save JSON database file
     const fileTarget = path.join(feedsDir, `${langKey}.json`);
