@@ -33,8 +33,13 @@
       </div>
     </header>
 
-    <!-- Horizontal Language Menu -->
-    <div class="lang-scroll-menu">
+    <!-- Horizontal Language Menu with Desktop Scroll Arrows -->
+    <div class="lang-menu-container">
+      <button class="scroll-arrow left-arrow" id="scroll-left-btn" aria-label="Scroll left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      
+      <div class="lang-scroll-menu" id="lang-scroll-menu">
       <button class="lang-pill lang-color-ml" data-lang="malayalam">Malayalam</button>
       <button class="lang-pill lang-color-en" data-lang="english">English</button>
       <button class="lang-pill lang-color-hi" data-lang="hindi">Hindi</button>
@@ -45,6 +50,11 @@
       <button class="lang-pill lang-color-mr" data-lang="marathi">Marathi</button>
       <button class="lang-pill lang-color-gu" data-lang="gujarati">Gujarati</button>
       <button class="lang-pill lang-color-pa" data-lang="punjabi">Punjabi</button>
+      </div>
+
+      <button class="scroll-arrow right-arrow" id="scroll-right-btn" aria-label="Scroll right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
     </div>
 
     <!-- News Articles Container -->

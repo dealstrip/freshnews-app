@@ -184,15 +184,50 @@ header {
 }
 
 /* Horizontal Language Menu */
+.lang-menu-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.scroll-arrow {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 10px;
+  display: none; /* hidden on mobile by default */
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.scroll-arrow:hover {
+  color: var(--text-primary);
+}
+
+/* Show arrows on screens wider than 600px */
+@media (min-width: 600px) {
+  .scroll-arrow {
+    display: flex;
+  }
+}
+
 .lang-scroll-menu {
   display: flex;
   overflow-x: auto;
   gap: 10px;
   padding: 10px 16px;
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  flex: 1;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  scroll-behavior: smooth; /* Smooth scrolling for the arrows */
 }
 
 .lang-scroll-menu::-webkit-scrollbar {

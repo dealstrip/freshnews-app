@@ -131,6 +131,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Horizontal Scroll Arrows for Desktop
+    const scrollMenu = document.getElementById('lang-scroll-menu');
+    const scrollLeftBtn = document.getElementById('scroll-left-btn');
+    const scrollRightBtn = document.getElementById('scroll-right-btn');
+    
+    if (scrollLeftBtn && scrollRightBtn && scrollMenu) {
+      scrollLeftBtn.addEventListener('click', () => {
+        scrollMenu.scrollBy({ left: -150, behavior: 'smooth' });
+      });
+      scrollRightBtn.addEventListener('click', () => {
+        scrollMenu.scrollBy({ left: 150, behavior: 'smooth' });
+      });
+    }
+
     // FAB Manual Refresh
     fabRefreshBtn.addEventListener('click', () => {
       // Rotation animation
