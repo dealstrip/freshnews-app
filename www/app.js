@@ -190,7 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function fetchNews(callback = null) {
     showLoading();
     
-    const feedUrl = `./feeds/${state.language}.json`;
+    // Fetch live news directly from GitHub's unlimited raw content servers to bypass Cloudflare build limits!
+    const feedUrl = `https://raw.githubusercontent.com/dealstrip/freshnews-app/main/www/feeds/${state.language}.json`;
 
     fetch(feedUrl)
       .then(response => {
