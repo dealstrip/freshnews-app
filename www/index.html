@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshNews - Brief RSS News Client</title>
+  <meta name="description" content="A premium, lightweight, database-free client to read Malayalam, English, and Hindi news in brief formats. Fully free static hosting.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Wrapper representing phone screen -->
+  <div class="app-container">
+    
+    <!-- App Header -->
+    <header>
+      <div class="header-main">
+        <h1>
+          <span class="logo-dot"></span>
+          FreshNews
+        </h1>
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon (Default for Light theme) -->
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" id="theme-toggle-icon">
+            <path d="M12.3 22h-.1c-5.5 0-10-4.5-10-10 0-4.8 3.5-8.9 8.2-9.8.5-.1 1 .2 1.2.7.2.5.1 1.1-.3 1.4-1.6 1.3-2.5 3.3-2.5 5.5 0 3.9 3.2 7.1 7.1 7.1 2.2 0 4.2-.9 5.5-2.5.3-.4.9-.5 1.4-.3.5.2.8.7.7 1.2-.9 4.7-5 8.2-9.8 8.2z"/>
+          </svg>
+        </button>
+      </div>
+      <!-- News Ticker / Live Pulser -->
+      <div class="info-ticker">
+        <span id="ticker-status-text">Updates every 15 mins | Refresh to load latest</span>
+        <span class="pulse-dot"></span>
+      </div>
+    </header>
+
+    <!-- News Articles Container -->
+    <main id="news-feed-container" class="news-feed">
+      <!-- Loading State -->
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.228 9H18.22" />
+        </svg>
+        <p>Loading news briefs...</p>
+      </div>
+    </main>
+
+    <!-- Floating Action Button for Manual Refresh -->
+    <button id="fab-refresh-btn" class="fab-refresh" aria-label="Refresh news feed">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 12a7 7 0 01-7 7 7 7 0 01-7-7 7 7 0 017-7V2l5 4-5 4V7a5 5 0 00-5 5 5 5 0 005 5 5 5 0 005-5h2z"/>
+      </svg>
+    </button>
+
+    <!-- Overlay Sub-view for Menu / Settings -->
+    <div id="menu-view-overlay" class="sub-view-overlay">
+      <h2 class="overlay-title">Settings</h2>
+      
+      <div class="menu-group">
+        <div class="menu-row">
+          <span>Preferred Language</span>
+          <select id="settings-language-select" class="menu-select">
+            <option value="malayalam">മലയാളം (Malayalam)</option>
+            <option value="english">English</option>
+            <option value="hindi">हिंदी (Hindi)</option>
+          </select>
+        </div>
+        <div class="menu-row">
+          <span>App Theme</span>
+          <select id="settings-theme-select" class="menu-select">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+          </select>
+        </div>
+      </div>
+
+      <h2 class="overlay-title">About</h2>
+      <div class="menu-group">
+        <div class="about-text">
+          <p style="margin-bottom: 10px;"><strong>FreshNews</strong> is a 100% database-free, client-side news app reading verified RSS channels directly from official outlets.</p>
+          <p>It is optimized for low-bandwidth usage, zero server costs, and premium responsive mobile performance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay Sub-view for Deals (Mock) -->
+    <div id="deals-view-overlay" class="sub-view-overlay">
+      <h2 class="overlay-title">Deals & Offers</h2>
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5a2 2 0 10-2 2h2zm0 0h4m-4 0H8m12 3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p>Premium deals and promotions will appear here later.</p>
+      </div>
+    </div>
+
+    <!-- Overlay Sub-view for Videos (Mock) -->
+    <div id="videos-view-overlay" class="sub-view-overlay">
+      <h2 class="overlay-title">Short Video Updates</h2>
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+        <p>Trending brief video summaries will be uploaded here.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button id="nav-btn-malayalam" class="nav-item active" data-lang="malayalam" aria-label="Switch to Malayalam news">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        മലയാളം
+      </button>
+
+      <button id="nav-btn-hindi" class="nav-item" data-lang="hindi" aria-label="Switch to Hindi news">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        हिंदी
+      </button>
+
+      <button id="nav-btn-english" class="nav-item" data-lang="english" aria-label="Switch to English news">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        English
+      </button>
+
+      <button id="nav-btn-videos" class="nav-item" data-view="videos" aria-label="View videos section">
+        <svg viewBox="0 0 24 24">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+        Videos
+      </button>
+
+      <button id="nav-btn-deals" class="nav-item" data-view="deals" aria-label="View deals section">
+        <svg viewBox="0 0 24 24">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Deals
+      </button>
+
+      <button id="nav-btn-menu" class="nav-item" data-view="menu" aria-label="Toggle settings menu">
+        <svg viewBox="0 0 24 24">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

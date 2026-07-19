@@ -1,0 +1,24 @@
+{
+  "name": "freshnews",
+  "version": "1.0.0",
+  "description": "Free Brief News Application - Malayalam and Other Languages",
+  "main": "fetch_news.js",
+  "scripts": {
+    "start": "sirv www --dev --port 3000",
+    "fetch": "node fetch_news.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.2",
+    "@capacitor/cli": "^8.4.2",
+    "@capacitor/core": "^8.4.2",
+    "dotenv": "^17.4.2",
+    "rss-parser": "^3.13.0",
+    "sirv-cli": "^2.0.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5"
+  }
+}

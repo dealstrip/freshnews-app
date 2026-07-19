@@ -1,0 +1,211 @@
+const Parser = require('rss-parser');
+const fs = require('fs');
+const path = require('path');
+require('dotenv').config();
+
+const parser = new Parser({
+  customFields: {
+    item: [
+      ['media:content', 'mediaContent'],
+      ['enclosure', 'enclosure'],
+      ['content:encoded', 'contentEncoded']
+    ]
+  }
+});
+
+// Main RSS Feeds for Malayalam, English, and Hindi
+const LANGUAGES = {
+  malayalam: {
+    name: 'Malayalam',
+    code: 'ml',
+    feeds: [
+      { name: 'News18 Malayalam', url: 'https://malayalam.news18.com/commonfeeds/v1/mal/rss/latest.xml' },
+      { name: 'Oneindia Malayalam', url: 'https://malayalam.oneindia.com/rss/feeds/oneindia-malayalam-fb.xml' }
+    ],
+    promo: 'Please follow us for short news updates.'
+  },
+  english: {
+    name: 'English',
+    code: 'en',
+    feeds: [
+      { name: 'NDTV News', url: 'https://feeds.feedburner.com/ndtvnews-top-stories' },
+      { name: 'India Today', url: 'https://www.indiatoday.in/rss/home' }
+    ],
+    promo: 'Please follow us for short news updates.'
+  },
+  hindi: {
+    name: 'Hindi',
+    code: 'hi',
+    feeds: [
+      { name: 'Amar Ujala', url: 'https://www.amarujala.com/rss/breaking-news.xml' },
+      { name: 'Hindustan', url: 'https://api.livehindustan.com/feeds/rss/news-brief/rssfeed.xml' }
+    ],
+    promo: 'कृपया संक्षिप्त समाचार अपडेट के लिए हमें फॉलो करें।'
+  }
+};
+
+// Strict rule-based text cleaner
+function cleanText(text) {
+  if (!text) return '';
+  
+  // Remove HTML tags if any
+  let cleaned = text.replace(/<\/?[^>]+(>|$)/g, "");
+
+  // RULE: NEVER use 'former' or 'current' before titles or roles
+  // Example: "former president", "the former prime minister", "current senator"
+  cleaned = cleaned.replace(/\b(former|current)\s+/gi, '');
+
+  // RULE: STRICT NUMBER FORMATTING (No commas in numbers)
+  // E.g., 300,000 -> 300000; 1,19,000 -> 119000
+  // Running twice to clear nested commas in Indian numbering system
+  cleaned = cleaned.replace(/(\d+),(\d+)/g, '$1$2');
+  cleaned = cleaned.replace(/(\d+),(\d+)/g, '$1$2');
+
+  return cleaned.trim();
+}
+
+// Function to call Mistral API for summarization if API key exists
+async function summarizeWithMistral(title, content, languageCode) {
+  const apiKey = process.env.MISTRAL_API_KEY;
+  if (!apiKey || apiKey === 'K1WZ673HSel9AhzgSTOim71L0pDR58tP' || apiKey.includes('YOUR_')) {
+    // Return null to fall back to regex cleaning if no valid custom API key is present
+    return null;
+  }
+
+  const prompt = `You are a professional brief news writer.
+Summarize the following news article title and description into a single, fully completed paragraph of about 50-60 words in ${languageCode === 'ml' ? 'Malayalam' : languageCode === 'hi' ? 'Hindi' : 'English'}.
+
+CRITICAL RULES:
+1. Ensure the story is fully completed. Do not end with incomplete sentences, and do not use ellipses (...). If a sentence cannot be completed, skip it.
+2. NEVER use the words 'former' or 'current' before any title or role (e.g., do NOT write 'former president', 'former prime minister', 'current senator'). Use only their name or exact title.
+3. NEVER use commas inside numbers (e.g. write 300000, not 300,000; write 4500, not 4,500).
+4. Output ONLY the translated/summarized paragraph. Do not include introductory text, tags, or concluding promotional phrases.
+
+Title: ${title}
+Content: ${content}`;
+
+  try {
+    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'mistral-tiny',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2
+      })
+    });
+
+    const data = await response.json();
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content.trim();
+    }
+  } catch (error) {
+    console.error('Mistral API error, falling back to local processing:', error.message);
+  }
+  return null;
+}
+
+// Helper to extract image URLs from RSS item
+function getImageUrl(item) {
+  if (item.mediaContent && item.mediaContent.$ && item.mediaContent.$.url) {
+    return item.mediaContent.$.url;
+  }
+  if (item.enclosure && item.enclosure.url) {
+    return item.enclosure.url;
+  }
+  // Search contentEncoded or content for img tags
+  const content = item.contentEncoded || item.content || '';
+  const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+  if (imgMatch && imgMatch[1]) {
+    return imgMatch[1];
+  }
+  return '';
+}
+
+async function run() {
+  const feedsDir = path.join(__dirname, 'www', 'feeds');
+  if (!fs.existsSync(feedsDir)) {
+    fs.mkdirSync(feedsDir, { recursive: true });
+  }
+
+  for (const [langKey, langInfo] of Object.entries(LANGUAGES)) {
+    console.log(`Processing language: ${langInfo.name}...`);
+    const articles = [];
+
+    for (const source of langInfo.feeds) {
+      try {
+        console.log(`Fetching ${source.name} RSS feed...`);
+        const feed = await parser.parseURL(source.url);
+        
+        for (const item of feed.items) {
+          let title = cleanText(item.title);
+          let rawDesc = item.contentSnippet || item.content || '';
+          let cleanedDesc = cleanText(rawDesc);
+
+          // Skip completely empty items
+          if (!title || !cleanedDesc) continue;
+
+          // Check completeness rule for raw feeds:
+          // "When generating news, ensure each story is fully completed. If a story or sentence cannot be completed, skip it entirely."
+          // If description ends with incomplete punctuation or '...' or similar, we skip it
+          if (cleanedDesc.endsWith('...') || cleanedDesc.endsWith('..') || cleanedDesc.endsWith('…') || cleanedDesc.endsWith('read more') || cleanedDesc.endsWith('read details')) {
+            continue;
+          }
+
+          let summary = '';
+          // Try to summarize with Mistral, if it fails or key is missing, fall back to cleaned RSS description
+          const aiSummary = await summarizeWithMistral(title, rawDesc, langInfo.code);
+          if (aiSummary) {
+            summary = cleanText(aiSummary);
+          } else {
+            summary = cleanedDesc;
+          }
+
+          // Double check rule requirements on the final summary:
+          // Ensure it's fully complete
+          if (summary.endsWith('...') || summary.endsWith('…')) {
+            continue;
+          }
+
+          // Rule: "After the last line of the news, there must only be '.. ' before the concluding promotional phrase"
+          // Trim trailing spaces and punctuation from news content, then append
+          summary = summary.replace(/[.\s]+$/, '');
+          const finalSummary = `${summary}.. ${langInfo.promo}`;
+
+          // Format relative time or clean date
+          const pubDate = item.pubDate ? new Date(item.pubDate).toISOString() : new Date().toISOString();
+
+          articles.push({
+            id: item.guid || item.link || Math.random().toString(36).substring(2, 9),
+            title: title,
+            summary: finalSummary,
+            link: item.link,
+            pubDate: pubDate,
+            source: source.name,
+            image: getImageUrl(item)
+          });
+        }
+      } catch (err) {
+        console.error(`Error reading ${source.name} (${source.url}):`, err.message);
+      }
+    }
+
+    // Sort: Newest articles first
+    articles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+    // Limit to top 30 stories to keep file small and light
+    const finalArticles = articles.slice(0, 30);
+
+    // Save JSON database file
+    const fileTarget = path.join(feedsDir, `${langKey}.json`);
+    fs.writeFileSync(fileTarget, JSON.stringify(finalArticles, null, 2));
+    console.log(`Saved ${finalArticles.length} stories to ${fileTarget}\n`);
+  }
+
+  console.log('Feed generation complete!');
+}
+
+run();

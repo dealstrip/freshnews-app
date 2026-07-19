@@ -1,0 +1,351 @@
+// FreshNews Client JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // --- STATE MANAGEMENT ---
+  const state = {
+    language: localStorage.getItem('freshnews_lang') || 'malayalam',
+    theme: localStorage.getItem('freshnews_theme') || 'light',
+    currentView: 'feed', // 'feed', 'videos', 'deals', 'menu'
+    articles: []
+  };
+
+  // --- DOM SELECTORS ---
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const themeToggleIcon = document.getElementById('theme-toggle-icon');
+  const fabRefreshBtn = document.getElementById('fab-refresh-btn');
+  
+  const newsFeedContainer = document.getElementById('news-feed-container');
+  const tickerStatusText = document.getElementById('ticker-status-text');
+  
+  // Navigation elements
+  const navButtons = {
+    malayalam: document.getElementById('nav-btn-malayalam'),
+    hindi: document.getElementById('nav-btn-hindi'),
+    english: document.getElementById('nav-btn-english'),
+    videos: document.getElementById('nav-btn-videos'),
+    deals: document.getElementById('nav-btn-deals'),
+    menu: document.getElementById('nav-btn-menu')
+  };
+
+  // Overlay Sub-views
+  const overlays = {
+    videos: document.getElementById('videos-view-overlay'),
+    deals: document.getElementById('deals-view-overlay'),
+    menu: document.getElementById('menu-view-overlay')
+  };
+
+  // Settings elements
+  const langSelect = document.getElementById('settings-language-select');
+  const themeSelect = document.getElementById('settings-theme-select');
+
+  // --- INIT APPLICATION ---
+  function init() {
+    applyTheme(state.theme);
+    applyLanguage(state.language);
+    setupEventListeners();
+    fetchNews();
+  }
+
+  // --- THEME ENGINE ---
+  function applyTheme(newTheme) {
+    state.theme = newTheme;
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('freshnews_theme', newTheme);
+    themeSelect.value = newTheme;
+
+    // Update Header Toggle Icon
+    if (newTheme === 'dark') {
+      themeToggleIcon.innerHTML = `
+        <!-- Sun Icon -->
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41zM5.99 16.95l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/>
+        </svg>
+      `;
+    } else {
+      themeToggleIcon.innerHTML = `
+        <!-- Moon Icon -->
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12.3 22h-.1c-5.5 0-10-4.5-10-10 0-4.8 3.5-8.9 8.2-9.8.5-.1 1 .2 1.2.7.2.5.1 1.1-.3 1.4-1.6 1.3-2.5 3.3-2.5 5.5 0 3.9 3.2 7.1 7.1 7.1 2.2 0 4.2-.9 5.5-2.5.3-.4.9-.5 1.4-.3.5.2.8.7.7 1.2-.9 4.7-5 8.2-9.8 8.2z"/>
+        </svg>
+      `;
+    }
+  }
+
+  // --- LANGUAGE ENGINE ---
+  function applyLanguage(lang) {
+    state.language = lang;
+    localStorage.setItem('freshnews_lang', lang);
+    langSelect.value = lang;
+    
+    // Update tickers
+    const strings = {
+      malayalam: 'Updates every 15 mins | Refresh to load latest',
+      english: 'Updates every 15 mins | Refresh to load latest',
+      hindi: 'हर 15 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें'
+    };
+    tickerStatusText.textContent = strings[lang] || strings.english;
+  }
+
+  // --- EVENT LISTENERS ---
+  function setupEventListeners() {
+    // Theme icon toggle in header
+    themeToggleBtn.addEventListener('click', () => {
+      const nextTheme = state.theme === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+    });
+
+    // Theme selector dropdown in menu
+    themeSelect.addEventListener('change', (e) => {
+      applyTheme(e.target.value);
+    });
+
+    // Language selector dropdown in menu
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+      switchView('feed');
+      fetchNews();
+    });
+
+    // FAB Manual Refresh
+    fabRefreshBtn.addEventListener('click', () => {
+      // Rotation animation
+      fabRefreshBtn.classList.add('spinning');
+      fetchNews(() => {
+        setTimeout(() => {
+          fabRefreshBtn.classList.remove('spinning');
+        }, 600);
+      });
+    });
+
+    // Navigation Tab Taps
+    Object.entries(navButtons).forEach(([key, btn]) => {
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        // Remove active class from all navs
+        Object.values(navButtons).forEach(b => b && b.classList.remove('active'));
+        
+        // Add active to current
+        btn.classList.add('active');
+
+        // Handle navigation target
+        if (btn.dataset.lang) {
+          // Language click handles feed switches
+          applyLanguage(btn.dataset.lang);
+          switchView('feed');
+          fetchNews();
+        } else if (btn.dataset.view) {
+          // View overlay click handles view switches
+          switchView(btn.dataset.view);
+        }
+      });
+    });
+  }
+
+  // --- VIEW CONTROLLER ---
+  function switchView(viewName) {
+    state.currentView = viewName;
+    
+    // Hide all sub-view overlays
+    Object.values(overlays).forEach(overlay => {
+      if (overlay) overlay.classList.remove('active');
+    });
+
+    // Show selected overlay if it exists
+    if (viewName !== 'feed' && overlays[viewName]) {
+      overlays[viewName].classList.add('active');
+      fabRefreshBtn.style.display = 'none'; // hide FAB for settings/videos
+    } else {
+      // Show main feed
+      fabRefreshBtn.style.display = 'flex';
+    }
+
+    // Ensure nav items reflect active view
+    Object.entries(navButtons).forEach(([key, btn]) => {
+      if (!btn) return;
+      
+      const isLangBtn = btn.dataset.lang !== undefined;
+      
+      if (viewName === 'feed') {
+        if (isLangBtn && btn.dataset.lang === state.language) {
+          btn.classList.add('active');
+        } else if (!isLangBtn) {
+          btn.classList.remove('active');
+        }
+      } else {
+        if (!isLangBtn && btn.dataset.view === viewName) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      }
+    });
+  }
+
+  // --- NEWS SERVICES & FETCHING ---
+  function fetchNews(callback = null) {
+    showLoading();
+    
+    const feedUrl = `./feeds/${state.language}.json`;
+
+    fetch(feedUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network file not found');
+        }
+        return response.json();
+      })
+      .then(data => {
+        state.articles = data;
+        renderNews();
+        if (callback) callback();
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+        renderError();
+        if (callback) callback();
+      });
+  }
+
+  function showLoading() {
+    newsFeedContainer.innerHTML = `
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.228 9H18.22" />
+        </svg>
+        <p>Loading news briefs...</p>
+      </div>
+    `;
+  }
+
+  function renderError() {
+    const errorMessages = {
+      malayalam: 'വാർത്തകൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.',
+      english: 'Could not load news feeds. Please check your connection and retry.',
+      hindi: 'समाचार लोड नहीं किए जा सके। कृपया पुनः प्रयास करें।'
+    };
+
+    newsFeedContainer.innerHTML = `
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <p>${errorMessages[state.language] || errorMessages.english}</p>
+        <button onclick="window.location.reload()" class="ad-button" style="margin-top: 10px;">Retry</button>
+      </div>
+    `;
+  }
+
+  function formatTime(dateString) {
+    const date = new Date(dateString);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const strMinutes = minutes < 10 ? '0' + minutes : minutes;
+    
+    return `${month} ${day}, ${hours}:${strMinutes} ${ampm}`;
+  }
+
+  function renderNews() {
+    if (state.articles.length === 0) {
+      newsFeedContainer.innerHTML = `
+        <div class="empty-state">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+          </svg>
+          <p>No brief articles available right now.</p>
+        </div>
+      `;
+      return;
+    }
+
+    newsFeedContainer.innerHTML = '';
+
+    state.articles.forEach((item, index) => {
+      // Create News Card Element
+      const card = document.createElement('div');
+      card.className = 'news-card';
+      card.setAttribute('id', `news-card-${item.id}`);
+
+      // Fallback placeholder image using Picsum if no feed image exists
+      const imageSrc = item.image || `https://picsum.photos/id/${100 + index}/300/200`;
+
+      // Read full article label in user preferred language
+      const readMoreLabels = {
+        malayalam: 'പൂർണ്ണ വാർത്ത വായിക്കുക',
+        english: 'Read full article',
+        hindi: 'पूरा समाचार पढ़ें'
+      };
+      
+      const label = readMoreLabels[state.language] || readMoreLabels.english;
+
+      card.innerHTML = `
+        <div class="card-content">
+          <div>
+            <h3 class="card-title">${item.title}</h3>
+            <div class="card-meta">
+              <span class="source-pill">${item.source}</span>
+              <span>${formatTime(item.pubDate)}</span>
+            </div>
+          </div>
+          
+          <!-- Brief content displayed when card is tapped/expanded -->
+          <div class="brief-container">
+            <p>${item.summary}</p>
+            <div class="card-action-bar">
+              <a href="${item.link}" target="_blank" class="read-more-link" rel="noopener noreferrer">
+                ${label} ➔
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-image-container">
+          <img src="${imageSrc}" alt="Article thumbnail" loading="lazy" onerror="this.src='https://picsum.photos/id/10/300/200'">
+        </div>
+      `;
+
+      // Make card expandable on tap
+      card.addEventListener('click', (e) => {
+        // If clicking on the anchor link, let it navigate instead of collapsing
+        if (e.target.tagName.toLowerCase() === 'a') return;
+
+        // Toggle expanded class
+        const wasExpanded = card.classList.contains('expanded');
+        
+        // Collapse all other cards first (single card mode, like a slider)
+        document.querySelectorAll('.news-card').forEach(c => c.classList.remove('expanded'));
+        
+        if (!wasExpanded) {
+          card.classList.add('expanded');
+          // Smooth scroll to card
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+
+      newsFeedContainer.appendChild(card);
+
+      // Insert a beautiful custom Promotion card (like the screenshot advert) after card index 1
+      if (index === 1) {
+        const adCard = document.createElement('div');
+        adCard.className = 'ad-card';
+        adCard.innerHTML = `
+          <div class="ad-badge">Promoted</div>
+          <div class="ad-title">Grip Invest</div>
+          <div class="ad-headline">Invest in High-Yield Bonds & FDs. Start earning up to 12% returns.</div>
+          <button class="ad-button" onclick="window.open('https://gripinvest.in', '_blank')">Invest Now</button>
+        `;
+        newsFeedContainer.appendChild(adCard);
+      }
+    });
+  }
+
+  // Run initialization
+  init();
+});
