@@ -27,8 +27,7 @@ const LANGUAGES = {
       { name: 'Samakalika Malayalam', url: 'https://news.google.com/rss/search?q=site:samakalikamalayalam.com&hl=ml&gl=IN&ceid=IN:ml' },
       { name: 'News18 Malayalam', url: 'https://malayalam.news18.com/commonfeeds/v1/mal/rss/latest.xml' },
       { name: 'Oneindia Malayalam', url: 'https://malayalam.oneindia.com/rss/feeds/oneindia-malayalam-fb.xml' }
-    ],
-    promo: 'Please follow us for short news updates.'
+    ]
   },
   english: {
     name: 'English',
@@ -37,8 +36,7 @@ const LANGUAGES = {
       { name: 'Indian Express', url: 'https://indianexpress.com/feed/' },
       { name: 'The Hindu', url: 'https://www.thehindu.com/feeder/default.rss' },
       { name: 'Deccan Herald', url: 'https://www.deccanherald.com/feed/rss' }
-    ],
-    promo: 'Please follow us for short news updates.'
+    ]
   },
   hindi: {
     name: 'Hindi',
@@ -46,8 +44,7 @@ const LANGUAGES = {
     feeds: [
       { name: 'Amar Ujala', url: 'https://www.amarujala.com/rss/breaking-news.xml' },
       { name: 'Hindustan', url: 'https://api.livehindustan.com/feeds/rss/news-brief/rssfeed.xml' }
-    ],
-    promo: 'कृपया संक्षिप्त समाचार अपडेट के लिए हमें फॉलो करें।'
+    ]
   },
   tamil: {
     name: 'Tamil',
@@ -55,56 +52,49 @@ const LANGUAGES = {
     feeds: [
       { name: 'Oneindia Tamil', url: 'https://tamil.oneindia.com/rss/feeds/oneindia-tamil-fb.xml' },
       { name: 'Asianet Tamil', url: 'https://tamil.asianetnews.com/rss' }
-    ],
-    promo: 'குறுகிய செய்தி புதுப்பிப்புகளுக்கு எங்களைப் பின்தொடரவும்.'
+    ]
   },
   kannada: {
     name: 'Kannada',
     code: 'kn',
     feeds: [
       { name: 'Asianet Kannada', url: 'https://kannada.asianetnews.com/rss' }
-    ],
-    promo: 'ಸಂಕ್ಷಿಪ್ತ ಸುದ್ದಿ ನವೀಕರಣಗಳಿಗಾಗಿ ದಯವಿಟ್ಟು ನಮ್ಮನ್ನು ಅನುಸರಿಸಿ.'
+    ]
   },
   telugu: {
     name: 'Telugu',
     code: 'te',
     feeds: [
       { name: 'Oneindia Telugu', url: 'https://telugu.oneindia.com/rss/feeds/telugu-news-fb.xml' }
-    ],
-    promo: 'చిన్న వార్తల నవీకరణల కోసం దయచేసి మమ్మల్ని అనుసరించండి.'
+    ]
   },
   bengali: {
     name: 'Bengali',
     code: 'bn',
     feeds: [
       { name: 'ABP Ananda Bengali', url: 'https://bengali.abplive.com/home/feed' }
-    ],
-    promo: 'সংক্ষিপ্ত সংবাদ আপডেটের জন্য অনুগ্রহ করে আমাদের অনুসরণ করুন।'
+    ]
   },
   marathi: {
     name: 'Marathi',
     code: 'mr',
     feeds: [
       { name: 'ABP Majha', url: 'https://marathi.abplive.com/home/feed' }
-    ],
-    promo: 'थोडक्यात बातम्यांच्या अपडेटसाठी कृपया आम्हाला फॉलो करा.'
+    ]
   },
   gujarati: {
     name: 'Gujarati',
     code: 'gu',
     feeds: [
       { name: 'Oneindia Gujarati', url: 'https://gujarati.oneindia.com/rss/feeds/gujarati-news-fb.xml' }
-    ],
-    promo: 'ટૂંકા સમાચાર અપડેટ્સ માટે કૃપા કરીને અમને અનુસરો.'
+    ]
   },
   punjabi: {
     name: 'Punjabi',
     code: 'pa',
     feeds: [
       { name: 'ABP Sanjha', url: 'https://punjabi.abplive.com/home/feed' }
-    ],
-    promo: 'ਛੋਟੀਆਂ ਖਬਰਾਂ ਦੇ ਅਪਡੇਟਸ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਪਾਲਣ ਕਰੋ।'
+    ]
   }
 };
 
@@ -225,20 +215,10 @@ async function run() {
             summary = cleanedDesc;
           }
 
-          // Clean up Google News RSS truncations to make it a complete sentence instead of skipping!
-          if (summary.endsWith('...') || summary.endsWith('…') || summary.endsWith('..') || summary.endsWith('read more')) {
-            const lastPeriod = summary.lastIndexOf('.');
-            if (lastPeriod > 10) {
-                summary = summary.substring(0, lastPeriod + 1);
-            } else {
-                summary = title; // If no complete sentence exists, use the title to guarantee completeness
-            }
-          }
+          // Keep the full snippet from RSS, just strip "read more" strings at the very end
+          summary = summary.replace(/\b(read more|continue reading)[.\s]*$/i, '').trim();
 
-          // Rule: "After the last line of the news, there must only be '.. ' before the concluding promotional phrase"
-          // Trim trailing spaces and punctuation from news content, then append
-          summary = summary.replace(/[.\s]+$/, '');
-          const finalSummary = `${summary}.. ${langInfo.promo}`;
+          const finalSummary = summary;
 
           // Format relative time or clean date
           const pubDate = item.pubDate ? new Date(item.pubDate).toISOString() : new Date().toISOString();
