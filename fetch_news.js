@@ -41,6 +41,63 @@ const LANGUAGES = {
       { name: 'Hindustan', url: 'https://api.livehindustan.com/feeds/rss/news-brief/rssfeed.xml' }
     ],
     promo: 'कृपया संक्षिप्त समाचार अपडेट के लिए हमें फॉलो करें।'
+  },
+  tamil: {
+    name: 'Tamil',
+    code: 'ta',
+    feeds: [
+      { name: 'Oneindia Tamil', url: 'https://tamil.oneindia.com/rss/feeds/oneindia-tamil-fb.xml' },
+      { name: 'Asianet Tamil', url: 'https://tamil.asianetnews.com/rss' }
+    ],
+    promo: 'குறுகிய செய்தி புதுப்பிப்புகளுக்கு எங்களைப் பின்தொடரவும்.'
+  },
+  kannada: {
+    name: 'Kannada',
+    code: 'kn',
+    feeds: [
+      { name: 'Asianet Kannada', url: 'https://kannada.asianetnews.com/rss' }
+    ],
+    promo: 'ಸಂಕ್ಷಿಪ್ತ ಸುದ್ದಿ ನವೀಕರಣಗಳಿಗಾಗಿ ದಯವಿಟ್ಟು ನಮ್ಮನ್ನು ಅನುಸರಿಸಿ.'
+  },
+  telugu: {
+    name: 'Telugu',
+    code: 'te',
+    feeds: [
+      { name: 'Oneindia Telugu', url: 'https://telugu.oneindia.com/rss/feeds/telugu-news-fb.xml' }
+    ],
+    promo: 'చిన్న వార్తల నవీకరణల కోసం దయచేసి మమ్మల్ని అనుసరించండి.'
+  },
+  bengali: {
+    name: 'Bengali',
+    code: 'bn',
+    feeds: [
+      { name: 'ABP Ananda Bengali', url: 'https://bengali.abplive.com/home/feed' }
+    ],
+    promo: 'সংক্ষিপ্ত সংবাদ আপডেটের জন্য অনুগ্রহ করে আমাদের অনুসরণ করুন।'
+  },
+  marathi: {
+    name: 'Marathi',
+    code: 'mr',
+    feeds: [
+      { name: 'ABP Majha', url: 'https://marathi.abplive.com/home/feed' }
+    ],
+    promo: 'थोडक्यात बातम्यांच्या अपडेटसाठी कृपया आम्हाला फॉलो करा.'
+  },
+  gujarati: {
+    name: 'Gujarati',
+    code: 'gu',
+    feeds: [
+      { name: 'Oneindia Gujarati', url: 'https://gujarati.oneindia.com/rss/feeds/gujarati-news-fb.xml' }
+    ],
+    promo: 'ટૂંકા સમાચાર અપડેટ્સ માટે કૃપા કરીને અમને અનુસરો.'
+  },
+  punjabi: {
+    name: 'Punjabi',
+    code: 'pa',
+    feeds: [
+      { name: 'ABP Sanjha', url: 'https://punjabi.abplive.com/home/feed' }
+    ],
+    promo: 'ਛੋਟੀਆਂ ਖਬਰਾਂ ਦੇ ਅਪਡੇਟਸ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਪਾਲਣ ਕਰੋ।'
   }
 };
 
@@ -73,7 +130,7 @@ async function summarizeWithMistral(title, content, languageCode) {
   }
 
   const prompt = `You are a professional brief news writer.
-Summarize the following news article title and description into a single, fully completed paragraph of about 50-60 words in ${languageCode === 'ml' ? 'Malayalam' : languageCode === 'hi' ? 'Hindi' : 'English'}.
+Summarize the following news article title and description into a single, fully completed paragraph of about 50-60 words in ${languageCode === 'ml' ? 'Malayalam' : languageCode === 'hi' ? 'Hindi' : languageCode === 'ta' ? 'Tamil' : languageCode === 'kn' ? 'Kannada' : languageCode === 'te' ? 'Telugu' : languageCode === 'bn' ? 'Bengali' : languageCode === 'mr' ? 'Marathi' : languageCode === 'gu' ? 'Gujarati' : languageCode === 'pa' ? 'Punjabi' : 'English'}.
 
 CRITICAL RULES:
 1. Ensure the story is fully completed. Do not end with incomplete sentences, and do not use ellipses (...). If a sentence cannot be completed, skip it.

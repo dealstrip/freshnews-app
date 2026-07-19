@@ -22,15 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     malayalam: document.getElementById('nav-btn-malayalam'),
     hindi: document.getElementById('nav-btn-hindi'),
     english: document.getElementById('nav-btn-english'),
-    videos: document.getElementById('nav-btn-videos'),
-    deals: document.getElementById('nav-btn-deals'),
+    tamil: document.getElementById('nav-btn-tamil'),
+    kannada: document.getElementById('nav-btn-kannada'),
     menu: document.getElementById('nav-btn-menu')
   };
 
   // Overlay Sub-views
   const overlays = {
-    videos: document.getElementById('videos-view-overlay'),
-    deals: document.getElementById('deals-view-overlay'),
     menu: document.getElementById('menu-view-overlay')
   };
 
@@ -81,7 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const strings = {
       malayalam: 'Updates every 15 mins | Refresh to load latest',
       english: 'Updates every 15 mins | Refresh to load latest',
-      hindi: 'हर 15 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें'
+      hindi: 'हर 15 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें',
+      tamil: '15 நிமிடத்திற்கு ஒருமுறை புதுப்பிக்கப்படும்',
+      kannada: 'ಪ್ರತಿ 15 ನಿಮಿಷಗಳಿಗೊಮ್ಮೆ ನವೀಕರಿಸಲಾಗುತ್ತದೆ',
+      telugu: 'ప్రతి 15 నిమిషాలకు నవీకరించబడుతుంది',
+      bengali: 'প্রতি 15 মিনিট অন্তর আপডেট করা হয়',
+      marathi: 'दर 15 मिनिटांनी अपडेट केले जाते',
+      gujarati: 'દર 15 મિનિટે અપડેટ થાય છે',
+      punjabi: 'ਹਰ 15 ਮਿੰਟਾਂ ਵਿੱਚ ਅਪਡੇਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ'
     };
     tickerStatusText.textContent = strings[lang] || strings.english;
   }
@@ -221,7 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessages = {
       malayalam: 'വാർത്തകൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.',
       english: 'Could not load news feeds. Please check your connection and retry.',
-      hindi: 'समाचार लोड नहीं किए जा सके। कृपया पुनः प्रयास करें।'
+      hindi: 'समाचार लोड नहीं किए जा सके। कृपया पुनः प्रयास करें।',
+      tamil: 'செய்திகளை ஏற்ற முடியவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.',
+      kannada: 'ಸುದ್ದಿ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.',
+      telugu: 'వార్తలు లోడ్ చేయబడలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.',
+      bengali: 'খবর লোড করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।',
+      marathi: 'बातम्या लोड होऊ शकल्या नाहीत. कृपया पुन्हा प्रयत्न करा.',
+      gujarati: 'સમાચાર લોડ કરી શક્યા નથી. કૃપા કરીને ફરી પ્રયાસ કરો.',
+      punjabi: 'ਖਬਰਾਂ ਲੋਡ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾ ਸਕੀਆਂ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।'
     };
 
     newsFeedContainer.innerHTML = `
@@ -280,7 +292,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const readMoreLabels = {
         malayalam: 'പൂർണ്ണ വാർത്ത വായിക്കുക',
         english: 'Read full article',
-        hindi: 'पूरा समाचार पढ़ें'
+        hindi: 'पूरा समाचार पढ़ें',
+        tamil: 'முழு செய்தியைப் படிக்க',
+        kannada: 'ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ',
+        telugu: 'పూర్తి వార్త చదవండి',
+        bengali: 'সম্পূর্ণ খবর পড়ুন',
+        marathi: 'संपूर्ण बातमी वाचा',
+        gujarati: 'સંપૂર્ણ સમાચાર વાંચો',
+        punjabi: 'ਪੂਰੀ ਖਬਰ ਪੜ੍ਹੋ'
       };
       
       const label = readMoreLabels[state.language] || readMoreLabels.english;
