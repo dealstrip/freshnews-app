@@ -19,6 +19,12 @@ const LANGUAGES = {
     name: 'Malayalam',
     code: 'ml',
     feeds: [
+      { name: 'Marunadan Malayali', url: 'https://news.google.com/rss/search?q=site:marunadanmalayali.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Manorama', url: 'https://news.google.com/rss/search?q=site:manoramaonline.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Mathrubhumi', url: 'https://news.google.com/rss/search?q=site:mathrubhumi.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Kerala Kaumudi', url: 'https://news.google.com/rss/search?q=site:keralakaumudi.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Deepika', url: 'https://news.google.com/rss/search?q=site:deepika.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Samakalika Malayalam', url: 'https://news.google.com/rss/search?q=site:samakalikamalayalam.com&hl=ml&gl=IN&ceid=IN:ml' },
       { name: 'News18 Malayalam', url: 'https://malayalam.news18.com/commonfeeds/v1/mal/rss/latest.xml' },
       { name: 'Oneindia Malayalam', url: 'https://malayalam.oneindia.com/rss/feeds/oneindia-malayalam-fb.xml' }
     ],
