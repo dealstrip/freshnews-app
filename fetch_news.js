@@ -34,8 +34,9 @@ const LANGUAGES = {
     name: 'English',
     code: 'en',
     feeds: [
-      { name: 'NDTV News', url: 'https://feeds.feedburner.com/ndtvnews-top-stories' },
-      { name: 'India Today', url: 'https://www.indiatoday.in/rss/home' }
+      { name: 'Indian Express', url: 'https://indianexpress.com/feed/' },
+      { name: 'The Hindu', url: 'https://www.thehindu.com/feeder/default.rss' },
+      { name: 'Deccan Herald', url: 'https://www.deccanherald.com/feed/rss' }
     ],
     promo: 'Please follow us for short news updates.'
   },
@@ -194,6 +195,7 @@ async function run() {
   for (const [langKey, langInfo] of Object.entries(LANGUAGES)) {
     console.log(`Processing language: ${langInfo.name}...`);
     const articles = [];
+    const seenTitles = new Set();
 
     for (const source of langInfo.feeds) {
       try {
@@ -207,6 +209,11 @@ async function run() {
 
           // Skip completely empty items
           if (!title || !cleanedDesc) continue;
+
+          // Deduplication: avoid same article multiple times
+          const normTitle = title.toLowerCase().replace(/[^a-z0-9]/gi, '');
+          if (seenTitles.has(normTitle)) continue;
+          seenTitles.add(normTitle);
 
           // Completeness check moved to after fallback generation
           let summary = '';

@@ -222,6 +222,37 @@ header {
   border-color: var(--accent-color);
 }
 
+/* Individual Language Colors */
+.lang-color-ml { background-color: #e3f2fd; color: #1565c0; border-color: #bbdefb; }
+.lang-color-en { background-color: #fce4ec; color: #c2185b; border-color: #f8bbd0; }
+.lang-color-hi { background-color: #e8f5e9; color: #2e7d32; border-color: #c8e6c9; }
+.lang-color-ta { background-color: #fff3e0; color: #ef6c00; border-color: #ffe0b2; }
+.lang-color-kn { background-color: #f3e5f5; color: #7b1fa2; border-color: #e1bee7; }
+.lang-color-te { background-color: #e0f7fa; color: #00838f; border-color: #b2ebf2; }
+.lang-color-bn { background-color: #fffde7; color: #f57f17; border-color: #fff59d; }
+.lang-color-mr { background-color: #e8eaf6; color: #3949ab; border-color: #c5cae9; }
+.lang-color-gu { background-color: #fbe9e7; color: #d84315; border-color: #ffccbc; }
+.lang-color-pa { background-color: #e0f2f1; color: #00695c; border-color: #b2dfdb; }
+
+/* Dark mode adjustments for individual colors */
+[data-theme="dark"] .lang-color-ml { background-color: rgba(21, 101, 192, 0.2); color: #90caf9; border-color: rgba(21, 101, 192, 0.4); }
+[data-theme="dark"] .lang-color-en { background-color: rgba(194, 24, 91, 0.2); color: #f48fb1; border-color: rgba(194, 24, 91, 0.4); }
+[data-theme="dark"] .lang-color-hi { background-color: rgba(46, 125, 50, 0.2); color: #a5d6a7; border-color: rgba(46, 125, 50, 0.4); }
+[data-theme="dark"] .lang-color-ta { background-color: rgba(239, 108, 0, 0.2); color: #ffcc80; border-color: rgba(239, 108, 0, 0.4); }
+[data-theme="dark"] .lang-color-kn { background-color: rgba(123, 31, 162, 0.2); color: #ce93d8; border-color: rgba(123, 31, 162, 0.4); }
+[data-theme="dark"] .lang-color-te { background-color: rgba(0, 131, 143, 0.2); color: #80deea; border-color: rgba(0, 131, 143, 0.4); }
+[data-theme="dark"] .lang-color-bn { background-color: rgba(245, 127, 23, 0.2); color: #fff59d; border-color: rgba(245, 127, 23, 0.4); }
+[data-theme="dark"] .lang-color-mr { background-color: rgba(57, 73, 171, 0.2); color: #9fa8da; border-color: rgba(57, 73, 171, 0.4); }
+[data-theme="dark"] .lang-color-gu { background-color: rgba(216, 67, 21, 0.2); color: #ffab91; border-color: rgba(216, 67, 21, 0.4); }
+[data-theme="dark"] .lang-color-pa { background-color: rgba(0, 105, 92, 0.2); color: #80cbc4; border-color: rgba(0, 105, 92, 0.4); }
+
+/* Ensure active pill text is always clearly legible regardless of base color */
+.lang-pill.active {
+  background-color: var(--accent-color) !important;
+  color: #ffffff !important;
+  border-color: var(--accent-color) !important;
+}
+
 /* News List Scroll Container */
 .news-feed {
   flex: 1;
