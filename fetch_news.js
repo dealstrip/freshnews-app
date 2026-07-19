@@ -129,11 +129,8 @@ function cleanText(text) {
 
 // Function to call Mistral API for summarization if API key exists
 async function summarizeWithMistral(title, content, languageCode) {
-  const apiKey = process.env.MISTRAL_API_KEY;
-  if (!apiKey || apiKey === 'K1WZ673HSel9AhzgSTOim71L0pDR58tP' || apiKey.includes('YOUR_')) {
-    // Return null to fall back to regex cleaning if no valid custom API key is present
-    return null;
-  }
+  // AI summarization disabled by user to use original news excerpts instead
+  return null;
 
   const prompt = `You are a professional brief news writer.
 Summarize the following news article title and description into a single, fully completed paragraph of about 50-60 words in ${languageCode === 'ml' ? 'Malayalam' : languageCode === 'hi' ? 'Hindi' : languageCode === 'ta' ? 'Tamil' : languageCode === 'kn' ? 'Kannada' : languageCode === 'te' ? 'Telugu' : languageCode === 'bn' ? 'Bengali' : languageCode === 'mr' ? 'Marathi' : languageCode === 'gu' ? 'Gujarati' : languageCode === 'pa' ? 'Punjabi' : 'English'}.
