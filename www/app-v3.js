@@ -83,12 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update tickers
     const strings = {
-      malayalam: 'Updates every 15 mins | Refresh to load latest',
-      english: 'Updates every 15 mins | Refresh to load latest',
-      hindi: 'हर 15 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें',
-      tamil: '15 நிமிடத்திற்கு ஒருமுறை புதுப்பிக்கப்படும்',
-      kannada: 'ಪ್ರತಿ 15 ನಿಮಿಷಗಳಿಗೊಮ್ಮೆ ನವೀಕರಿಸಲಾಗುತ್ತದೆ',
-      marathi: 'दर 15 मिनिटांनी अपडेट केले जाते'
+      malayalam: 'Updates every 3 mins | Refresh to load latest',
+      english: 'Updates every 3 mins | Refresh to load latest',
+      hindi: 'हर 3 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें',
+      tamil: '3 நிமிடத்திற்கு ஒருமுறை புதுப்பிக்கப்படும்'
     };
     tickerStatusText.textContent = strings[lang] || strings.english;
     

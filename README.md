@@ -31,20 +31,20 @@ The backend script `fetch_news.js` is responsible for parsing live news.
 
 Because GitHub Actions (cron jobs) are "best effort" and can often be delayed by 30+ minutes or canceled due to concurrent commits, we have bypassed them in favor of a **Local Windows Scheduled Task**.
 
-On your local Windows machine (in `D:\WEBSITES\FRESHNEWS`), the automated update process runs silently in the background every 15 minutes.
+On your local Windows machine (in `D:\WEBSITES\FRESHNEWS`), the automated update process runs silently in the background every 3 minutes.
 
 ### The Automation Scripts
 * **`auto_updater.bat`**: The core script. It navigates to the project directory, runs `node fetch_news.js`, checks for new changes using `git diff`, and if changes exist, commits and pushes them to GitHub.
-* **`auto_updater_hidden.vbs`**: A Visual Basic script wrapper that executes the `.bat` file invisibly. This prevents a black CMD window from flashing on your screen every 15 minutes.
+* **`auto_updater_hidden.vbs`**: A Visual Basic script wrapper that executes the `.bat` file invisibly. This prevents a black CMD window from flashing on your screen every 3 minutes.
 
 ### Setting up the Scheduled Task (If it needs to be recreated)
 If you ever migrate to a new computer or need to recreate the background job, open **Command Prompt** (as Administrator) and run this exact command:
 
 ```cmd
-schtasks /create /tn "FreshNews_AutoUpdater" /tr "wscript.exe D:\WEBSITES\FRESHNEWS\auto_updater_hidden.vbs" /sc minute /mo 15 /F
+schtasks /create /tn "FreshNews_AutoUpdater" /tr "wscript.exe D:\WEBSITES\FRESHNEWS\auto_updater_hidden.vbs" /sc minute /mo 3 /F
 ```
 
-This ensures your PC will automatically pull, compile, and publish the latest news every 15 minutes to your live site, as long as it is turned on and connected to the internet.
+This ensures your PC will automatically pull, compile, and publish the latest news every 3 minutes to your live site, as long as it is turned on and connected to the internet.
 
 ---
 
