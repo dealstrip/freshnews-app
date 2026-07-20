@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const validLangs = ['malayalam', 'english', 'hindi', 'tamil', 'kannada', 'marathi'];
     if (langParam && validLangs.includes(langParam)) {
         state.language = langParam;
-        localStorage.setItem('freshnews_lang', langParam);
     }
 
     applyTheme(state.theme);
@@ -79,9 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- LANGUAGE ENGINE ---
-  function applyLanguage(lang) {
+  function applyLanguage(lang, saveToLocal = false) {
     state.language = lang;
-    localStorage.setItem('freshnews_lang', lang);
+    if (saveToLocal) {
+      localStorage.setItem('freshnews_lang', lang);
+    }
     langSelect.value = lang;
     
     // Update tickers
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language selector dropdown in menu
     langSelect.addEventListener('change', (e) => {
-      applyLanguage(e.target.value);
+      applyLanguage(e.target.value, true);
       switchView('feed');
       fetchNews();
     });
