@@ -1,6 +1,7 @@
 const Parser = require('rss-parser');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 require('dotenv').config();
 
 const parser = new Parser({
@@ -313,8 +314,11 @@ async function run() {
           // Format relative time or clean date
           const pubDate = item.pubDate ? new Date(item.pubDate).toISOString() : new Date().toISOString();
 
+          const uniqueString = item.link || item.guid || title;
+          const shortId = crypto.createHash('md5').update(uniqueString).digest('hex').substring(0, 5);
+
           articles.push({
-            id: item.guid || item.link || Math.random().toString(36).substring(2, 9),
+            id: shortId,
             title: title,
             summary: finalSummary,
             link: item.link,
