@@ -1,10 +1,18 @@
 @echo off
 cd /d "D:\WEBSITES\FRESHNEWS"
 :loop
+cls
 echo ========================================================
-echo Fetching news feeds at %time%...
+echo FRESHNEWS AUTO UPDATER
+echo Fetching live news feeds at %time%...
 echo ========================================================
+echo.
+
 node fetch_news.js
+
+echo.
+echo ========================================================
+echo Checking for changes...
 git add www/feeds/*.json
 git diff --staged --quiet
 if %ERRORLEVEL% equ 0 (
@@ -14,7 +22,14 @@ if %ERRORLEVEL% equ 0 (
     git commit -m "Local auto-update news feeds"
     git push
 )
+
+echo.
 echo ========================================================
-echo Waiting 180 seconds before next update...
+echo Update complete! 
+echo The script will now wait 3 minutes (180 seconds).
+echo A countdown timer is shown below.
+echo Do not close this window!
+echo ========================================================
 timeout /t 180 /nobreak
+
 goto loop
