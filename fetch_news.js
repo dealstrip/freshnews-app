@@ -97,39 +97,6 @@ const LANGUAGES = {
       { name: 'Vistara News', url: 'https://news.google.com/rss/search?q=site:vistaranews.com&hl=kn&gl=IN&ceid=IN:kn' },
       { name: 'Vishwawani', url: 'https://news.google.com/rss/search?q=site:vishwawani.news&hl=kn&gl=IN&ceid=IN:kn' }
     ]
-  },
-  telugu: {
-    name: 'Telugu',
-    code: 'te',
-    feeds: [
-      { name: 'Eenadu', url: 'https://news.google.com/rss/search?q=site:eenadu.net&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'Sakshi', url: 'https://news.google.com/rss/search?q=site:sakshi.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'Andhra Jyothy', url: 'https://news.google.com/rss/search?q=site:andhrajyothy.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'NT News', url: 'https://news.google.com/rss/search?q=site:ntnews.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'Namasthe Telangana', url: 'https://news.google.com/rss/search?q=site:namasthetelangana.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'TV9 Telugu', url: 'https://news.google.com/rss/search?q=site:tv9telugu.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'NTV Telugu', url: 'https://news.google.com/rss/search?q=site:ntvtelugu.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'Samayam Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.samayam.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'News18 Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.news18.com&hl=te&gl=IN&ceid=IN:te' },
-      { name: 'Asianet Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.asianetnews.com&hl=te&gl=IN&ceid=IN:te' }
-    ]
-  },
-  bengali: {
-    name: 'Bengali',
-    code: 'bn',
-    feeds: [
-      { name: 'Anandabazar Patrika', url: 'https://news.google.com/rss/search?q=site:anandabazar.com&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'Bartaman Patrika', url: 'https://news.google.com/rss/search?q=site:bartamanpatrika.com&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'Sangbad Pratidin', url: 'https://news.google.com/rss/search?q=site:sangbadpratidin.in&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'Aajkaal', url: 'https://news.google.com/rss/search?q=site:aajkaal.in&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'Ei Samay', url: 'https://news.google.com/rss/search?q=site:eisamay.com&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'Zee News Bengali', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/bengali&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'News18 Bengali', url: 'https://news.google.com/rss/search?q=site:bengali.news18.com&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'ABP Ananda', url: 'https://news.google.com/rss/search?q=site:bengali.abplive.com&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'BBC Bengali', url: 'https://news.google.com/rss/search?q=site:bbc.com/bengali&hl=bn&gl=IN&ceid=IN:bn' },
-      { name: 'TV9 Bangla', url: 'https://news.google.com/rss/search?q=site:tv9bangla.com&hl=bn&gl=IN&ceid=IN:bn' }
-    ]
-  },
   marathi: {
     name: 'Marathi',
     code: 'mr',
@@ -144,38 +111,6 @@ const LANGUAGES = {
       { name: 'ABP Majha', url: 'https://news.google.com/rss/search?q=site:marathi.abplive.com&hl=mr&gl=IN&ceid=IN:mr' },
       { name: 'News18 Lokmat', url: 'https://news.google.com/rss/search?q=site:lokmat.news18.com&hl=mr&gl=IN&ceid=IN:mr' },
       { name: 'BBC Marathi', url: 'https://news.google.com/rss/search?q=site:bbc.com/marathi&hl=mr&gl=IN&ceid=IN:mr' }
-    ]
-  },
-  gujarati: {
-    name: 'Gujarati',
-    code: 'gu',
-    feeds: [
-      { name: 'Divya Bhaskar', url: 'https://news.google.com/rss/search?q=site:divyabhaskar.co.in&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'Sandesh', url: 'https://news.google.com/rss/search?q=site:sandesh.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'Gujarat Samachar', url: 'https://news.google.com/rss/search?q=site:gujaratsamachar.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'NavGujarat Samay', url: 'https://news.google.com/rss/search?q=site:navgujaratsamay.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'VTV Gujarati', url: 'https://news.google.com/rss/search?q=site:vtvgujarati.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'TV9 Gujarati', url: 'https://news.google.com/rss/search?q=site:tv9gujarati.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'Zee News Gujarati', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/gujarati&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'BBC Gujarati', url: 'https://news.google.com/rss/search?q=site:bbc.com/gujarati&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'I am Gujarat', url: 'https://news.google.com/rss/search?q=site:iamgujarat.com&hl=gu&gl=IN&ceid=IN:gu' },
-      { name: 'News18 Gujarati', url: 'https://news.google.com/rss/search?q=site:gujarati.news18.com&hl=gu&gl=IN&ceid=IN:gu' }
-    ]
-  },
-  punjabi: {
-    name: 'Punjabi',
-    code: 'pa',
-    feeds: [
-      { name: 'Jagbani', url: 'https://news.google.com/rss/search?q=site:jagbani.punjabkesari.in&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'Punjabi Tribune', url: 'https://news.google.com/rss/search?q=site:punjabitribuneonline.com&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'Ajit Jalandhar', url: 'https://news.google.com/rss/search?q=site:ajitjalandhar.com&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'Rozana Spokesman', url: "https://news.google.com/rss/search?q=site:rozanaspokesman.in&hl=pa&gl=IN&ceid=IN:pa" },
-      { name: 'PTC News', url: 'https://news.google.com/rss/search?q=site:ptcnews.tv&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'BBC Punjabi', url: 'https://news.google.com/rss/search?q=site:bbc.com/punjabi&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'News18 Punjab', url: 'https://news.google.com/rss/search?q=site:punjab.news18.com&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'Zee News Punjabi', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/punjabi&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'ABP Sanjha', url: 'https://news.google.com/rss/search?q=site:punjabi.abplive.com&hl=pa&gl=IN&ceid=IN:pa' },
-      { name: 'Punjabi Jagran', url: 'https://news.google.com/rss/search?q=site:punjabi.jagran.com&hl=pa&gl=IN&ceid=IN:pa' }
     ]
   }
 };

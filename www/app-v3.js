@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check for deep link language parameter
     const urlParams = new URLSearchParams(window.location.search);
     const langParam = urlParams.get('lang');
-    const validLangs = ['malayalam', 'english', 'hindi', 'tamil', 'kannada', 'telugu', 'bengali', 'marathi', 'gujarati', 'punjabi'];
+    const validLangs = ['malayalam', 'english', 'hindi', 'tamil', 'kannada', 'marathi'];
     if (langParam && validLangs.includes(langParam)) {
         state.language = langParam;
         localStorage.setItem('freshnews_lang', langParam);
@@ -91,11 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hindi: 'हर 15 मिनट में अपडेट | नवीनतम लोड करने के लिए रीफ्रेश करें',
       tamil: '15 நிமிடத்திற்கு ஒருமுறை புதுப்பிக்கப்படும்',
       kannada: 'ಪ್ರತಿ 15 ನಿಮಿಷಗಳಿಗೊಮ್ಮೆ ನವೀಕರಿಸಲಾಗುತ್ತದೆ',
-      telugu: 'ప్రతి 15 నిమిషాలకు నవీకరించబడుతుంది',
-      bengali: 'প্রতি 15 মিনিট অন্তর আপডেট করা হয়',
-      marathi: 'दर 15 मिनिटांनी अपडेट केले जाते',
-      gujarati: 'દર 15 મિનિટે અપડેટ થાય છે',
-      punjabi: 'ਹਰ 15 ਮਿੰਟਾਂ ਵਿੱਚ ਅਪਡੇਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ'
+      marathi: 'दर 15 मिनिटांनी अपडेट केले जाते'
     };
     tickerStatusText.textContent = strings[lang] || strings.english;
     
@@ -234,7 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
     showLoading();
     
     // Fetch live news directly from GitHub's unlimited raw content servers to bypass Cloudflare build limits!
-    const feedUrl = `https://raw.githubusercontent.com/dealstrip/freshnews-app/main/www/feeds/${state.language}.json`;
+    // Adding a timestamp query param to completely bypass raw.githubusercontent caching
+    const cacheBuster = new Date().getTime();
+    const feedUrl = `https://raw.githubusercontent.com/dealstrip/freshnews-app/main/www/feeds/${state.language}.json?_t=${cacheBuster}`;
 
     fetch(feedUrl)
       .then(response => {
@@ -273,11 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hindi: 'समाचार लोड नहीं किए जा सके। कृपया पुनः प्रयास करें।',
       tamil: 'செய்திகளை ஏற்ற முடியவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.',
       kannada: 'ಸುದ್ದಿ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.',
-      telugu: 'వార్తలు లోడ్ చేయబడలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.',
-      bengali: 'খবর লোড করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।',
-      marathi: 'बातम्या लोड होऊ शकल्या नाहीत. कृपया पुन्हा प्रयत्न करा.',
-      gujarati: 'સમાચાર લોડ કરી શક્યા નથી. કૃપા કરીને ફરી પ્રયાસ કરો.',
-      punjabi: 'ਖਬਰਾਂ ਲੋਡ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾ ਸਕੀਆਂ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।'
+      marathi: 'बातम्या लोड होऊ शकल्या नाहीत. कृपया पुन्हा प्रयत्न करा.'
     };
 
     newsFeedContainer.innerHTML = `
@@ -339,11 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hindi: 'पूरा समाचार पढ़ें',
         tamil: 'முழு செய்தியைப் படிக்க',
         kannada: 'ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ',
-        telugu: 'పూర్తి వార్త చదవండి',
-        bengali: 'সম্পূর্ণ খবর পড়ুন',
-        marathi: 'संपूर्ण बातमी वाचा',
-        gujarati: 'સંપૂર્ણ સમાચાર વાંચો',
-        punjabi: 'ਪੂਰੀ ਖਬਰ ਪੜ੍ਹੋ'
+        marathi: 'संपूर्ण बातमी वाचा'
       };
       
       const label = readMoreLabels[state.language] || readMoreLabels.english;
