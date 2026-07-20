@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (viewName !== 'feed' && overlays[viewName]) {
       overlays[viewName].classList.add('active');
       fabRefreshBtn.style.display = 'none'; // hide FAB for settings/videos
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
     } else {
       // Show main feed
       fabRefreshBtn.style.display = 'flex';

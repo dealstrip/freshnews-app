@@ -81,37 +81,6 @@ const LANGUAGES = {
       { name: 'Vikatan', url: 'https://news.google.com/rss/search?q=site:vikatan.com&hl=ta&gl=IN&ceid=IN:ta' },
       { name: 'BBC Tamil', url: 'https://news.google.com/rss/search?q=site:bbc.com/tamil&hl=ta&gl=IN&ceid=IN:ta' }
     ]
-  },
-  kannada: {
-    name: 'Kannada',
-    code: 'kn',
-    feeds: [
-      { name: 'Vijay Karnataka', url: 'https://news.google.com/rss/search?q=site:vijaykarnataka.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Kannada Prabha', url: 'https://news.google.com/rss/search?q=site:kannadaprabha.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Udayavani', url: 'https://news.google.com/rss/search?q=site:udayavani.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Prajavani', url: 'https://news.google.com/rss/search?q=site:prajavani.net&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Public TV', url: 'https://news.google.com/rss/search?q=site:publictv.in&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Asianet Suvarna', url: 'https://news.google.com/rss/search?q=site:kannada.asianetnews.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'News18 Kannada', url: 'https://news.google.com/rss/search?q=site:kannada.news18.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'TV9 Kannada', url: 'https://news.google.com/rss/search?q=site:tv9kannada.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Vistara News', url: 'https://news.google.com/rss/search?q=site:vistaranews.com&hl=kn&gl=IN&ceid=IN:kn' },
-      { name: 'Vishwawani', url: 'https://news.google.com/rss/search?q=site:vishwawani.news&hl=kn&gl=IN&ceid=IN:kn' }
-    ]
-  marathi: {
-    name: 'Marathi',
-    code: 'mr',
-    feeds: [
-      { name: 'Lokmat', url: 'https://news.google.com/rss/search?q=site:lokmat.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'Maharashtra Times', url: 'https://news.google.com/rss/search?q=site:maharashtratimes.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'Loksatta', url: 'https://news.google.com/rss/search?q=site:loksatta.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'Pudhari', url: 'https://news.google.com/rss/search?q=site:pudhari.news&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'Saamana', url: 'https://news.google.com/rss/search?q=site:saamana.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'TV9 Marathi', url: 'https://news.google.com/rss/search?q=site:tv9marathi.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'Zee 24 Taas', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/marathi&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'ABP Majha', url: 'https://news.google.com/rss/search?q=site:marathi.abplive.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'News18 Lokmat', url: 'https://news.google.com/rss/search?q=site:lokmat.news18.com&hl=mr&gl=IN&ceid=IN:mr' },
-      { name: 'BBC Marathi', url: 'https://news.google.com/rss/search?q=site:bbc.com/marathi&hl=mr&gl=IN&ceid=IN:mr' }
-    ]
   }
 };
 
@@ -204,13 +173,7 @@ async function run() {
     const articles = [];
     const seenTitles = new Set();
 
-    // Shuffle feeds to pick a random order
-    const shuffledFeeds = [...langInfo.feeds].sort(() => 0.5 - Math.random());
-    let successfulFeedsCount = 0;
-
-    for (const source of shuffledFeeds) {
-      if (successfulFeedsCount >= 5) break;
-
+    for (const source of langInfo.feeds) {
       try {
         console.log(`Fetching ${source.name} RSS feed...`);
         const feed = await parser.parseURL(source.url);
