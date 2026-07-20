@@ -367,6 +367,12 @@ header {
   letter-spacing: -0.2px;
 }
 
+/* Dark mode: newspaper source name in yellow */
+[data-theme="dark"] .source-pill {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+}
+
 .card-image-container {
   width: 90px;
   height: 90px;
@@ -417,6 +423,66 @@ header {
   height: 180px;
   margin-top: 10px;
   order: 2;
+}
+
+/* Share Buttons Row */
+.share-buttons-row {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0 4px;
+  order: 3;
+}
+
+.news-card.expanded .share-buttons-row {
+  display: flex;
+}
+
+.share-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.share-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.share-btn:hover {
+  transform: scale(1.15);
+}
+
+.share-btn:active {
+  transform: scale(0.95);
+}
+
+.share-whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+}
+
+.share-facebook {
+  background-color: #1877F2;
+  color: #ffffff;
+}
+
+.share-twitter {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.share-generic {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 .card-action-bar {
@@ -599,6 +665,33 @@ header {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* Share App Button in Settings */
+.share-app-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--accent-color), #0047b3);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.share-app-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.share-app-button:active {
+  transform: scale(0.98);
 }
 
 /* Animations */
