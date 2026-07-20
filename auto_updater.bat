@@ -15,6 +15,6 @@ if %ERRORLEVEL% equ 0 (
     git push
 )
 echo ========================================================
-echo Waiting 180 minutes before next update...
-timeout /t 10800 /nobreak
+echo Waiting 180 seconds before next update...
+timeout /t 180 /nobreak
 goto loop

@@ -31,13 +31,13 @@ The backend script `fetch_news.js` is responsible for parsing live news.
 
 Because GitHub Actions (cron jobs) are "best effort" and can often be delayed by 30+ minutes or canceled due to concurrent commits, we have bypassed them in favor of a **Local Windows Batch Loop**.
 
-On your local Windows machine (in `D:\WEBSITES\FRESHNEWS`), you can simply run the automated script manually and leave it running in the background. It will loop indefinitely every 3 hours (180 minutes).
+On your local Windows machine (in `D:\WEBSITES\FRESHNEWS`), you can simply run the automated script manually and leave it running in the background. It will loop indefinitely every 3 minutes (180 seconds).
 
 ### The Automation Script
-* **`auto_updater.bat`**: The core script. It navigates to the project directory, runs `node fetch_news.js`, checks for new changes using `git diff`, and if changes exist, commits and pushes them to GitHub. It then pauses for 180 minutes before repeating the process.
+* **`auto_updater.bat`**: The core script. It navigates to the project directory, runs `node fetch_news.js`, checks for new changes using `git diff`, and if changes exist, commits and pushes them to GitHub. It then pauses for 180 seconds before repeating the process.
 
 ### Running the Script
-Simply double-click `auto_updater.bat` in your File Explorer. A command prompt window will open, fetch the initial news, and then begin the 180-minute countdown loop. Leave this window open in the background to ensure your PC automatically pulls, compiles, and publishes the latest news to your live site, as long as it is turned on and connected to the internet.
+Simply double-click `auto_updater.bat` in your File Explorer. A command prompt window will open, fetch the initial news, and then begin the 180-second countdown loop. Leave this window open in the background to ensure your PC automatically pulls, compiles, and publishes the latest news to your live site, as long as it is turned on and connected to the internet.
 
 ---
 
