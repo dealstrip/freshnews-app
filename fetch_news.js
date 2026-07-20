@@ -244,6 +244,7 @@ async function run() {
   }
 
   console.log('Feed generation complete!');
+  process.exit(0);
 }
 
 run();
