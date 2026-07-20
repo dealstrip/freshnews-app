@@ -20,6 +20,7 @@ if %ERRORLEVEL% equ 0 (
 ) else (
     echo Committing and pushing new news...
     git commit -m "Local auto-update news feeds"
+    git pull --rebase
     git push
 )
 
