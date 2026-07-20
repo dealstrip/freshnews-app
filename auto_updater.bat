@@ -1,5 +1,5 @@
 @echo off
-cd /d "%~dp0"
+cd /d "D:\WEBSITES\FRESHNEWS"
 :loop
 echo ========================================================
 echo Fetching news feeds at %time%...
