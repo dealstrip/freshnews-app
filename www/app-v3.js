@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Settings elements
-  const langSelect = document.getElementById('settings-language-select');
   const themeSelect = document.getElementById('settings-theme-select');
 
   // --- INIT APPLICATION ---
@@ -78,12 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- LANGUAGE ENGINE ---
-  function applyLanguage(lang, saveToLocal = false) {
+  function applyLanguage(lang) {
     state.language = lang;
-    if (saveToLocal) {
-      localStorage.setItem('freshnews_lang', lang);
-    }
-    langSelect.value = lang;
+    localStorage.setItem('freshnews_lang', lang);
     
     // Update tickers
     const strings = {
@@ -118,13 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Theme selector dropdown in menu
     themeSelect.addEventListener('change', (e) => {
       applyTheme(e.target.value);
-    });
-
-    // Language selector dropdown in menu
-    langSelect.addEventListener('change', (e) => {
-      applyLanguage(e.target.value, true);
-      switchView('feed');
-      fetchNews();
     });
 
     // Language pills below header
