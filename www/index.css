@@ -427,16 +427,13 @@ header {
 
 /* Share Buttons Row */
 .share-buttons-row {
-  display: none;
+  display: flex;
   width: 100%;
   justify-content: center;
   gap: 16px;
-  padding: 12px 0 4px;
-  order: 3;
-}
-
-.news-card.expanded .share-buttons-row {
-  display: flex;
+  padding: 14px 0 4px;
+  margin-top: 12px;
+  border-top: 1px dashed var(--border-color);
 }
 
 .share-btn {
