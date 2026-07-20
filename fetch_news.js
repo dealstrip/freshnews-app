@@ -226,9 +226,6 @@ async function run() {
           });
         }
         
-        if (foundNewItems) {
-          successfulFeedsCount++;
-        }
       } catch (err) {
         console.error(`Error reading ${source.name} (${source.url}):`, err.message);
       }
