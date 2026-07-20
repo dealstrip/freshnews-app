@@ -1,6 +1,9 @@
 @echo off
 cd /d "%~dp0"
-echo Fetching news feeds...
+:loop
+echo ========================================================
+echo Fetching news feeds at %time%...
+echo ========================================================
 node fetch_news.js
 git add www/feeds/*.json
 git diff --staged --quiet
@@ -11,4 +14,7 @@ if %ERRORLEVEL% equ 0 (
     git commit -m "Local auto-update news feeds"
     git push
 )
-echo Done.
+echo ========================================================
+echo Waiting 180 minutes before next update...
+timeout /t 10800 /nobreak
+goto loop
