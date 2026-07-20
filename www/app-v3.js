@@ -38,6 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- INIT APPLICATION ---
   function init() {
+    // Check for deep link language parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const validLangs = ['malayalam', 'english', 'hindi', 'tamil', 'kannada', 'telugu', 'bengali', 'marathi', 'gujarati', 'punjabi'];
+    if (langParam && validLangs.includes(langParam)) {
+        state.language = langParam;
+        localStorage.setItem('freshnews_lang', langParam);
+    }
+
     applyTheme(state.theme);
     applyLanguage(state.language);
     setupEventListeners();
@@ -405,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
           e.stopPropagation();
           const shareType = btn.dataset.share;
           const shareTitle = item.title;
-          const shareUrl = item.link;
+          const shareUrl = `${window.location.origin}${window.location.pathname}?lang=${state.language}&id=${item.id}`;
           const shareText = `${shareTitle} - ${shareUrl}`;
 
           if (shareType === 'whatsapp') {
@@ -443,6 +452,19 @@ document.addEventListener('DOMContentLoaded', () => {
         newsFeedContainer.appendChild(adCard);
       }
     });
+
+    // Deep Linking: Auto-scroll and expand specific article if 'id' is in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = urlParams.get('id');
+    if (targetId) {
+      const targetElement = document.getElementById(`news-card-${targetId}`);
+      if (targetElement) {
+        targetElement.classList.add('expanded');
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    }
   }
 
   // --- SHARE APP BUTTON ---

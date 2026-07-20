@@ -19,81 +19,162 @@ const LANGUAGES = {
     name: 'Malayalam',
     code: 'ml',
     feeds: [
-      { name: 'Marunadan Malayali', url: 'https://news.google.com/rss/search?q=site:marunadanmalayali.com&hl=ml&gl=IN&ceid=IN:ml' },
-      { name: 'Manorama', url: 'https://news.google.com/rss/search?q=site:manoramaonline.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Manorama Online', url: 'https://news.google.com/rss/search?q=site:manoramaonline.com&hl=ml&gl=IN&ceid=IN:ml' },
       { name: 'Mathrubhumi', url: 'https://news.google.com/rss/search?q=site:mathrubhumi.com&hl=ml&gl=IN&ceid=IN:ml' },
-      { name: 'Kerala Kaumudi', url: 'https://news.google.com/rss/search?q=site:keralakaumudi.com&hl=ml&gl=IN&ceid=IN:ml' },
-      { name: 'Deepika', url: 'https://news.google.com/rss/search?q=site:deepika.com&hl=ml&gl=IN&ceid=IN:ml' },
-      { name: 'Samakalika Malayalam', url: 'https://news.google.com/rss/search?q=site:samakalikamalayalam.com&hl=ml&gl=IN&ceid=IN:ml' },
-      { name: 'News18 Malayalam', url: 'https://malayalam.news18.com/commonfeeds/v1/mal/rss/latest.xml' },
-      { name: 'Oneindia Malayalam', url: 'https://malayalam.oneindia.com/rss/feeds/oneindia-malayalam-fb.xml' }
+      { name: 'Asianet News', url: 'https://news.google.com/rss/search?q=site:asianetnews.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Madhyamam', url: 'https://news.google.com/rss/search?q=site:madhyamam.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Deshabhimani', url: 'https://news.google.com/rss/search?q=site:deshabhimani.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Kairali News', url: 'https://news.google.com/rss/search?q=site:kairalinewsonline.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: '24 News', url: 'https://news.google.com/rss/search?q=site:twentyfournews.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Reporter Live', url: 'https://news.google.com/rss/search?q=site:reporterlive.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Mangalam', url: 'https://news.google.com/rss/search?q=site:mangalam.com&hl=ml&gl=IN&ceid=IN:ml' },
+      { name: 'Janmabhumi', url: 'https://news.google.com/rss/search?q=site:janmabhumi.in&hl=ml&gl=IN&ceid=IN:ml' }
     ]
   },
   english: {
     name: 'English',
     code: 'en',
     feeds: [
-      { name: 'Indian Express', url: 'https://indianexpress.com/feed/' },
-      { name: 'The Hindu', url: 'https://www.thehindu.com/feeder/default.rss' },
-      { name: 'Deccan Herald', url: 'https://www.deccanherald.com/feed/rss' }
+      { name: 'Times of India', url: 'https://news.google.com/rss/search?q=site:timesofindia.indiatimes.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'The Hindu', url: 'https://news.google.com/rss/search?q=site:thehindu.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Hindustan Times', url: 'https://news.google.com/rss/search?q=site:hindustantimes.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Indian Express', url: 'https://news.google.com/rss/search?q=site:indianexpress.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'The Wire', url: 'https://news.google.com/rss/search?q=site:thewire.in&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Scroll.in', url: 'https://news.google.com/rss/search?q=site:scroll.in&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'NDTV', url: 'https://news.google.com/rss/search?q=site:ndtv.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'News18', url: 'https://news.google.com/rss/search?q=site:news18.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Firstpost', url: 'https://news.google.com/rss/search?q=site:firstpost.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Deccan Herald', url: 'https://news.google.com/rss/search?q=site:deccanherald.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Telegraph India', url: 'https://news.google.com/rss/search?q=site:telegraphindia.com&hl=en&gl=IN&ceid=IN:en' },
+      { name: 'Livemint', url: 'https://news.google.com/rss/search?q=site:livemint.com&hl=en&gl=IN&ceid=IN:en' }
     ]
   },
   hindi: {
     name: 'Hindi',
     code: 'hi',
     feeds: [
-      { name: 'Amar Ujala', url: 'https://www.amarujala.com/rss/breaking-news.xml' },
-      { name: 'Hindustan', url: 'https://api.livehindustan.com/feeds/rss/news-brief/rssfeed.xml' }
+      { name: 'Dainik Jagran', url: 'https://news.google.com/rss/search?q=site:jagran.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Dainik Bhaskar', url: 'https://news.google.com/rss/search?q=site:bhaskar.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Amar Ujala', url: 'https://news.google.com/rss/search?q=site:amarujala.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Navbharat Times', url: 'https://news.google.com/rss/search?q=site:navbharattimes.indiatimes.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Live Hindustan', url: 'https://news.google.com/rss/search?q=site:livehindustan.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Patrika', url: 'https://news.google.com/rss/search?q=site:patrika.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Aaj Tak', url: 'https://news.google.com/rss/search?q=site:aajtak.in&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'Zee News Hindi', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/hindi&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'News18 Hindi', url: 'https://news.google.com/rss/search?q=site:hindi.news18.com&hl=hi&gl=IN&ceid=IN:hi' },
+      { name: 'BBC Hindi', url: 'https://news.google.com/rss/search?q=site:bbc.com/hindi&hl=hi&gl=IN&ceid=IN:hi' }
     ]
   },
   tamil: {
     name: 'Tamil',
     code: 'ta',
     feeds: [
-      { name: 'Oneindia Tamil', url: 'https://tamil.oneindia.com/rss/feeds/oneindia-tamil-fb.xml' },
-      { name: 'Asianet Tamil', url: 'https://tamil.asianetnews.com/rss' }
+      { name: 'Daily Thanthi', url: 'https://news.google.com/rss/search?q=site:dailythanthi.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Dinamalar', url: 'https://news.google.com/rss/search?q=site:dinamalar.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Dinakaran', url: 'https://news.google.com/rss/search?q=site:dinakaran.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Hindu Tamil', url: 'https://news.google.com/rss/search?q=site:hindutamil.in&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Puthiya Thalaimurai', url: 'https://news.google.com/rss/search?q=site:puthiyathalaimurai.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Polimer News', url: 'https://news.google.com/rss/search?q=site:polimernews.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'News18 Tamil', url: 'https://news.google.com/rss/search?q=site:tamil.news18.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Samayam Tamil', url: 'https://news.google.com/rss/search?q=site:tamil.samayam.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'Vikatan', url: 'https://news.google.com/rss/search?q=site:vikatan.com&hl=ta&gl=IN&ceid=IN:ta' },
+      { name: 'BBC Tamil', url: 'https://news.google.com/rss/search?q=site:bbc.com/tamil&hl=ta&gl=IN&ceid=IN:ta' }
     ]
   },
   kannada: {
     name: 'Kannada',
     code: 'kn',
     feeds: [
-      { name: 'Asianet Kannada', url: 'https://kannada.asianetnews.com/rss' }
+      { name: 'Vijay Karnataka', url: 'https://news.google.com/rss/search?q=site:vijaykarnataka.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Kannada Prabha', url: 'https://news.google.com/rss/search?q=site:kannadaprabha.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Udayavani', url: 'https://news.google.com/rss/search?q=site:udayavani.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Prajavani', url: 'https://news.google.com/rss/search?q=site:prajavani.net&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Public TV', url: 'https://news.google.com/rss/search?q=site:publictv.in&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Asianet Suvarna', url: 'https://news.google.com/rss/search?q=site:kannada.asianetnews.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'News18 Kannada', url: 'https://news.google.com/rss/search?q=site:kannada.news18.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'TV9 Kannada', url: 'https://news.google.com/rss/search?q=site:tv9kannada.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Vistara News', url: 'https://news.google.com/rss/search?q=site:vistaranews.com&hl=kn&gl=IN&ceid=IN:kn' },
+      { name: 'Vishwawani', url: 'https://news.google.com/rss/search?q=site:vishwawani.news&hl=kn&gl=IN&ceid=IN:kn' }
     ]
   },
   telugu: {
     name: 'Telugu',
     code: 'te',
     feeds: [
-      { name: 'Oneindia Telugu', url: 'https://telugu.oneindia.com/rss/feeds/telugu-news-fb.xml' }
+      { name: 'Eenadu', url: 'https://news.google.com/rss/search?q=site:eenadu.net&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'Sakshi', url: 'https://news.google.com/rss/search?q=site:sakshi.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'Andhra Jyothy', url: 'https://news.google.com/rss/search?q=site:andhrajyothy.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'NT News', url: 'https://news.google.com/rss/search?q=site:ntnews.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'Namasthe Telangana', url: 'https://news.google.com/rss/search?q=site:namasthetelangana.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'TV9 Telugu', url: 'https://news.google.com/rss/search?q=site:tv9telugu.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'NTV Telugu', url: 'https://news.google.com/rss/search?q=site:ntvtelugu.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'Samayam Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.samayam.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'News18 Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.news18.com&hl=te&gl=IN&ceid=IN:te' },
+      { name: 'Asianet Telugu', url: 'https://news.google.com/rss/search?q=site:telugu.asianetnews.com&hl=te&gl=IN&ceid=IN:te' }
     ]
   },
   bengali: {
     name: 'Bengali',
     code: 'bn',
     feeds: [
-      { name: 'ABP Ananda Bengali', url: 'https://bengali.abplive.com/home/feed' }
+      { name: 'Anandabazar Patrika', url: 'https://news.google.com/rss/search?q=site:anandabazar.com&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'Bartaman Patrika', url: 'https://news.google.com/rss/search?q=site:bartamanpatrika.com&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'Sangbad Pratidin', url: 'https://news.google.com/rss/search?q=site:sangbadpratidin.in&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'Aajkaal', url: 'https://news.google.com/rss/search?q=site:aajkaal.in&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'Ei Samay', url: 'https://news.google.com/rss/search?q=site:eisamay.com&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'Zee News Bengali', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/bengali&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'News18 Bengali', url: 'https://news.google.com/rss/search?q=site:bengali.news18.com&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'ABP Ananda', url: 'https://news.google.com/rss/search?q=site:bengali.abplive.com&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'BBC Bengali', url: 'https://news.google.com/rss/search?q=site:bbc.com/bengali&hl=bn&gl=IN&ceid=IN:bn' },
+      { name: 'TV9 Bangla', url: 'https://news.google.com/rss/search?q=site:tv9bangla.com&hl=bn&gl=IN&ceid=IN:bn' }
     ]
   },
   marathi: {
     name: 'Marathi',
     code: 'mr',
     feeds: [
-      { name: 'ABP Majha', url: 'https://marathi.abplive.com/home/feed' }
+      { name: 'Lokmat', url: 'https://news.google.com/rss/search?q=site:lokmat.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'Maharashtra Times', url: 'https://news.google.com/rss/search?q=site:maharashtratimes.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'Loksatta', url: 'https://news.google.com/rss/search?q=site:loksatta.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'Pudhari', url: 'https://news.google.com/rss/search?q=site:pudhari.news&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'Saamana', url: 'https://news.google.com/rss/search?q=site:saamana.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'TV9 Marathi', url: 'https://news.google.com/rss/search?q=site:tv9marathi.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'Zee 24 Taas', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/marathi&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'ABP Majha', url: 'https://news.google.com/rss/search?q=site:marathi.abplive.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'News18 Lokmat', url: 'https://news.google.com/rss/search?q=site:lokmat.news18.com&hl=mr&gl=IN&ceid=IN:mr' },
+      { name: 'BBC Marathi', url: 'https://news.google.com/rss/search?q=site:bbc.com/marathi&hl=mr&gl=IN&ceid=IN:mr' }
     ]
   },
   gujarati: {
     name: 'Gujarati',
     code: 'gu',
     feeds: [
-      { name: 'Oneindia Gujarati', url: 'https://gujarati.oneindia.com/rss/feeds/gujarati-news-fb.xml' }
+      { name: 'Divya Bhaskar', url: 'https://news.google.com/rss/search?q=site:divyabhaskar.co.in&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'Sandesh', url: 'https://news.google.com/rss/search?q=site:sandesh.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'Gujarat Samachar', url: 'https://news.google.com/rss/search?q=site:gujaratsamachar.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'NavGujarat Samay', url: 'https://news.google.com/rss/search?q=site:navgujaratsamay.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'VTV Gujarati', url: 'https://news.google.com/rss/search?q=site:vtvgujarati.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'TV9 Gujarati', url: 'https://news.google.com/rss/search?q=site:tv9gujarati.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'Zee News Gujarati', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/gujarati&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'BBC Gujarati', url: 'https://news.google.com/rss/search?q=site:bbc.com/gujarati&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'I am Gujarat', url: 'https://news.google.com/rss/search?q=site:iamgujarat.com&hl=gu&gl=IN&ceid=IN:gu' },
+      { name: 'News18 Gujarati', url: 'https://news.google.com/rss/search?q=site:gujarati.news18.com&hl=gu&gl=IN&ceid=IN:gu' }
     ]
   },
   punjabi: {
     name: 'Punjabi',
     code: 'pa',
     feeds: [
-      { name: 'ABP Sanjha', url: 'https://punjabi.abplive.com/home/feed' }
+      { name: 'Jagbani', url: 'https://news.google.com/rss/search?q=site:jagbani.punjabkesari.in&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'Punjabi Tribune', url: 'https://news.google.com/rss/search?q=site:punjabitribuneonline.com&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'Ajit Jalandhar', url: 'https://news.google.com/rss/search?q=site:ajitjalandhar.com&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'Rozana Spokesman', url: "https://news.google.com/rss/search?q=site:rozanaspokesman.in&hl=pa&gl=IN&ceid=IN:pa" },
+      { name: 'PTC News', url: 'https://news.google.com/rss/search?q=site:ptcnews.tv&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'BBC Punjabi', url: 'https://news.google.com/rss/search?q=site:bbc.com/punjabi&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'News18 Punjab', url: 'https://news.google.com/rss/search?q=site:punjab.news18.com&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'Zee News Punjabi', url: 'https://news.google.com/rss/search?q=site:zeenews.india.com/punjabi&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'ABP Sanjha', url: 'https://news.google.com/rss/search?q=site:punjabi.abplive.com&hl=pa&gl=IN&ceid=IN:pa' },
+      { name: 'Punjabi Jagran', url: 'https://news.google.com/rss/search?q=site:punjabi.jagran.com&hl=pa&gl=IN&ceid=IN:pa' }
     ]
   }
 };
@@ -187,11 +268,19 @@ async function run() {
     const articles = [];
     const seenTitles = new Set();
 
-    for (const source of langInfo.feeds) {
+    // Shuffle feeds to pick a random order
+    const shuffledFeeds = [...langInfo.feeds].sort(() => 0.5 - Math.random());
+    let successfulFeedsCount = 0;
+
+    for (const source of shuffledFeeds) {
+      if (successfulFeedsCount >= 5) break;
+
       try {
         console.log(`Fetching ${source.name} RSS feed...`);
         const feed = await parser.parseURL(source.url);
         
+        let foundNewItems = false;
+
         for (const item of feed.items) {
           let title = cleanText(item.title);
           let rawDesc = item.contentSnippet || item.content || '';
@@ -204,6 +293,7 @@ async function run() {
           const normTitle = title.toLowerCase().replace(/[^a-z0-9]/gi, '');
           if (seenTitles.has(normTitle)) continue;
           seenTitles.add(normTitle);
+          foundNewItems = true;
 
           // Completeness check moved to after fallback generation
           let summary = '';
@@ -232,6 +322,10 @@ async function run() {
             source: source.name,
             image: getImageUrl(item)
           });
+        }
+        
+        if (foundNewItems) {
+          successfulFeedsCount++;
         }
       } catch (err) {
         console.error(`Error reading ${source.name} (${source.url}):`, err.message);
