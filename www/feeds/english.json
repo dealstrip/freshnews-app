@@ -1,5 +1,14 @@
 [
   {
+    "id": "ed2e1",
+    "title": "'Childhood, Youth, Dependency': Here's looking at you, dear ambition - Deccan Herald",
+    "summary": "'Childhood, Youth, Dependency': Here's looking at you, dear ambition  Deccan Herald",
+    "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa3RLVFlGVFdHYTI0YU9NczhNRUFpN0p5dFVaZ3FnbXN4TWxHNUhWajFQQmZidnI5UllxV09XYlppaWNFVWxWeWE0amU3WEI4SVVvOHhMRVRwbkQwNUVDRzVwcWVrb21qNUswUm1vVnQ1WFNoX040Z3JhZE8zZXROWWYxb0JDTUVoZFlrN3A2eUN6di1VTU1Pd2kyR1Awam1mZWdLc3dRWldJSDBuclRxQ0pmNA?oc=5",
+    "pubDate": "2026-08-08T20:31:36.000Z",
+    "source": "Deccan Herald",
+    "image": ""
+  },
+  {
     "id": "31f2b",
     "title": "'Old Hag, Mad Gynaecologist': Russia's Medvedev Unleashes Vicious Attack On EU Chief Ursula - The Times of India",
     "summary": "'Old Hag, Mad Gynaecologist': Russia's Medvedev Unleashes Vicious Attack On EU Chief Ursula  The Times of India",
@@ -51,15 +60,6 @@
     "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNUVJhdVdDNHo0TDZicDduX2lGOFB0bGdPY0UxMUo1amVJaGV6TWNEVHJWa3VQU3RJRDV1U2NRNWhqMS1lVWJXNVlsZWdyOVVDRHltMTl5TVhrZ2g5NXJQVEdNeGZSbWRUd1BXb2JuQ0wxbTI2WGRlS3F5cGhFMHV2dUJYeWdCUUVfdWlhbkh3NFM1d2JUc1J3TFU4VG9ZNW5BNkJPTzl5dzlqNzQ0Z0g4Y3VmOG1SOEI1al83T0Rib2dheE9jYWZHdFpHdWFGNTNKcy1WLUVfcHlWNTc1Z3hEZkdn0gHiAUFVX3lxTE1RUmF1V0M0ejRMNmJwN25faUY4UHRsZ09jRTExSjVqZUloZXpNY0RUclZrdVBTdElENXVTY1E1aGoxLWVVYlc1WWxlZ3I5VUNEeW0xOXlNWGtnaDk1clBUR014ZlJtZFR3UFdvYm5DTDFtMjZYZGVLcXlwaEUwdXZ1Qlh5Z0JRRV91aWFuSHc0UzV3YlRzUndMVThUb1k1bkE2Qk9POXl3OWo3NDRnSDhjdWY4bVI4QjVqXzdPRGJvZ2F4T2NhZkd0Wkd1YUY1M0pzLVYtRV9weVY1NzVneERmR2c?oc=5",
     "pubDate": "2026-08-08T19:58:51.000Z",
     "source": "Deccan Herald",
-    "image": ""
-  },
-  {
-    "id": "685fa",
-    "title": "Another arrest from Guj in Summit bldg call centre probe - The Times of India",
-    "summary": "Another arrest from Guj in Summit bldg call centre probe  The Times of India",
-    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNTVRRYTZnaTVOaGNJNnhDdlBSS3RpZ0lNa2RYWlVUNW1yV2RLZ2ljLUIxMjFDQjk0X0NfRThsSGVyWVFlTVJrMTYyZURsZTgxS1lseFBiRUxyTDVBNTktOS13Uk1mNGw0Smx3eWt6bUNfaWMxTnptbE9kbm1RS0hMdDZYaEpaR2ZLRDB3NHl0eFZVbk5uLVNWNE1iQ0VpaWIxbGNNUzBCeFE1YmhpUXo5Q2xKVG16Ql9pMFlONkpDX01mMHViRnlNMWl4c9IB0AFBVV95cUxQNHpqTTdSRWxtdUY4RHgzNG9nLVJQVjJ3TUhOc1VuZW13V2NpWHlVOEN5Ql9jaUpsVGtIWXNaUXhDMU1vazZFXzVPQ0RGTFJIV2xscjBucXE3UmJTMWNzNHpjWFJiMzgxTk9iQVd0dkZlVGZqdjNqQzgyQVZHQnltQVkzWWozZ2Q5VGpMbzdBU1JzRG5ZQVVGYVpPTFVVMmFNMTF4MWdlbF9OcU5OZlJjNkY2Ni1mcW5sMnNJQ3FvdVFDY0ZEd2VtVF9ROV9BSWF3?oc=5",
-    "pubDate": "2026-08-08T19:57:00.000Z",
-    "source": "Times of India",
     "image": ""
   },
   {
@@ -213,6 +213,15 @@
     "link": "https://news.google.com/rss/articles/CBMizgJBVV95cUxORjJwV0dPeW54RTYxRGFjUHphb1BXR3B1MkNwdkxWeFB4MV9Sa1VZeFVPU3FvV2lTaVhRZFU2M05ISmQ0ZVJEdmRENkhQdW93THBfYjJGd2ppRkJwRmQ3WURvRFNEOTNwcEM1bXoxa29rUWNjdDlndy1EajN1b1Jid2prQmRiWXN6R0k5c1d1TDEydi1jbXc3ZmctMHlhNjhkN0tBMGlnY1NPTXdwdWZCQnpyejZHcGVjR1V5b3IxNTBuVnRxRW15b2diNTFBbndTSjJ1OWpQMjdvVDQtQlVVb216X2ZVeUo4MWxGb3NoUmI3bmJHdUx3dkE5aXlvS0tuaUhPVWx3Y2FoZWJmRlQtQlFCVDBQWW81SFd5NVNPU2ltV1ZEenhMNnRTS2RLdEtiLXpHZzF6Ykw1ejRyaXdkbXZZTkJpTm5XYk1Lb2RR0gHTAkFVX3lxTE5WM1dQYU1WSWxpcU8zbnRHdFdrN29ULWVyXy1GOG5yeEJWT2t3RC1wU25aNF9tdl9memRDUDM4NjliX3I0Y2o3VzEwWmIyVGo1cjVYT21mekYwWm9mNlJXU3V3QkVXeDVpaGprLUExd0hOdi1RWF83SmhHaUNSb2pBNmRVaW5TYjhTdTBiXzI4eHkzNk8wbzBIZlE4N0ViY01Qd004UzM0Qm10MXNmWjJ4TEduT3kyemYwbnhfUUVGdjBfQkJ3TUNLSldiV3BwbTFsR0JDNW5ZNVJZa2VKbkUzYmZzZG9XczNRSC0wcFpTTmRkWUZwdkFSaXZucG1PMUhod3pWaElxOVRDMXNLSGNpSDlXdGJsT3IyNi0xYThaTUs3MTNmc080aGktOGVUZHhIcVBWU3F0MUZHY3Jua2xRMnhzWjJ0UGlySlp3Sm5QalAyNA?oc=5",
     "pubDate": "2026-08-08T19:04:00.000Z",
     "source": "Times of India",
+    "image": ""
+  },
+  {
+    "id": "5478c",
+    "title": "Drone carrying ‘significant’ explosives explodes near Bulgaria gas pipeline - Firstpost",
+    "summary": "Drone carrying ‘significant’ explosives explodes near Bulgaria gas pipeline  Firstpost",
+    "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPWmZmdUpTWkRuX29LcFRLQmVTazlpYURfdHMxRlE4UEc4M3NiU2l6N1BHOGZUTXlidnVSS0FUMlI1cXlkNHhkalplcm1CNDk0YTVKeWg1WGVqRzdKM3kzV3RmNmVSSHNlM2FlSG5vR0NUbkRReHlCS1B1TURlWC1QTl92X05XUVB3R0NhXzlVdXg4Y2xrVjU0REVHeXVTTEVvOFpFa05DUVg1QVQ5dkVSZTBoR1FYWnRUWmNJ?oc=5",
+    "pubDate": "2026-08-08T18:58:22.000Z",
+    "source": "Firstpost",
     "image": ""
   },
   {
@@ -888,15 +897,6 @@
     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNLTY5eWJEdWlITXpVSzRRNDg5WGFSYTJncjVTNGVLRVlyTTBwS2VCVmVJVmFjUVlncmkwZUNZLUk0dlV2TFUwTmt4NDNhdmhtai02blYtOW9FSXZwcXJLbmh6MnE4V2lJVjRHUHJraGZVbERVVTZ3U2pjaGk1dTA2Ul9BVVE0dkhsNm9UZ1V1c3YycEZEbFZnTUJSQTZldzd0Q1M2U2w2Y3ltUdIBsAFBVV95cUxOYzNwSEh1Q1NDS3BnYXBZNkVyZXhyVXhYb1FTaDU2LXU4aEpGOFZRWm5aa21lRTNXeWFPM1FVdV9uUVpDR3B3Q3lYVF9lcHpHZGJob1RsVU5wemptVWE5RGpGNnZJTGJrWFlzS0VwR2FwaEZqcmVqbnh4MGNBOXFRSmt1YmdqZWF6eHd2d2E1QTJINmVMQTJHcF9OQ1VsVnM0dUZwZjhHel9uTnhUZGxjbQ?oc=5",
     "pubDate": "2026-08-08T16:32:43.000Z",
     "source": "The Hindu",
-    "image": ""
-  },
-  {
-    "id": "59f30",
-    "title": "No Food, No Water: Jharkhand MLA Announces One-Day Hunger Strike In Support Of JPSC-JSSC Protest - News18",
-    "summary": "No Food, No Water: Jharkhand MLA Announces One-Day Hunger Strike In Support Of JPSC-JSSC Protest  News18",
-    "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOODZEMjk0UVVidzJXU2R2Sm03YVVJa25wNTlxTnR6OTBNTVZycFM3a3RBZHoxMmp5MjNRdmRFZWZaX1NWOVdLX092b2hKeVdQVnNBaG54Zm9fc2FlTXVvb0pWSXQ0M2FjZmU1VE5yeTA1cTJPV0EtdmNTMHVhUnpCOVhBVUIzQmVHa0sxRkxCWXFvc241N1p2YWtfNHlWU3RsdnJNQS1wOHBENnVEVVpTSzZud2JLQWxmOVlqbzNKZVFhSElEdTZEOVJrX3hmWF9EMGtJSTR3MW04UdIB3wFBVV95cUxOZ1ZWRHVGZW1NZWlQMHZ4d0NqVDg1dUs2c0xBZFJLZ3RyelFiTGFjX01xQ3hycXBBN3FOUnhrWVdwVXJUc3AyajRvTTVPeXNvZVlPNUpGX3FoTHoxVmQtQ3dwQVM0Q25wLWxxRGFfNEdsR3lra2Y2SkpPR2NHNGplY3BQbEFURkpMMFY1clRjdmhqLWZxLWZRazhaMDZUdGRSSy00MXZMZS1fM1FPYk5WSzlOcVQwUTJzN1dJVXNZeFg1b1FlTHFSR1dIazNnVTc0SGo3eHd5elppTVUxWDNv?oc=5",
-    "pubDate": "2026-08-08T16:31:24.000Z",
-    "source": "News18",
     "image": ""
   }
 ]
